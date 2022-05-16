@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/ -->
+<html class="js " lang="vi-VN" xmlns:fb="http://ogp.me/ns/fb#"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<!-- This site is optimized with the Yoast SEO plugin v14.1 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng</title>
+	<meta name="description" content="Chào các bạn, hôm này mình sẽ hướng dẫn các bạn tìm hiểu và lập trình giao tiếp với module thẻ từ RFID RC522, ...">
+	<meta name="robots" content="index, follow">
+	<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+	<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+	<link rel="canonical" href="http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/">
+	<meta property="og:locale" content="vi_VN">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng">
+	<meta property="og:description" content="Chào các bạn, hôm này mình sẽ hướng dẫn các bạn tìm hiểu và lập trình giao tiếp với module thẻ từ RFID RC522, ...">
+	<meta property="og:url" content="http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/">
+	<meta property="og:site_name" content="Tự học IoT, Lập trình nhúng">
+	<meta property="article:publisher" content="https://www.facebook.com/nguyendao207">
+	<meta property="article:author" content="https://www.facebook.com/nguyendao207">
+	<meta property="article:published_time" content="2020-11-18T20:56:51+00:00">
+	<meta property="article:modified_time" content="2020-11-19T18:26:50+00:00">
+	<meta property="og:image" content="http://iot47.com/wp-content/uploads/2020/11/RC522Pinout.jpg">
+	<meta property="og:image:width" content="582">
+	<meta property="og:image:height" content="309">
+	<meta name="twitter:card" content="summary_large_image">
+	<script src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/f(4).txt"></script><script src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/f(5).txt"></script><script src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/sdk.js.tải xuống" async="" crossorigin="anonymous"></script><script src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/f(6).txt" id="google_shimpl"></script><script type="text/javascript" async="" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/analytics.js.tải xuống"></script><script id="facebook-jssdk" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/sdk.js(1).tải xuống"></script><script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"http://iot47.com/#website","url":"http://iot47.com/","name":"T\u1ef1 h\u1ecdc IoT, L\u1eadp tr\u00ecnh nh\u00fang","description":"Blog chia s\u1ebb ki\u1ebfn th\u1ee9c IoT, l\u1eadp tr\u00ecnh vi \u0111i\u1ec1u khi\u1ec3n, thi\u1ebft k\u1ebf m\u1ea1ch \u0111i\u1ec7n t\u1eed","publisher":{"@id":"http://iot47.com/#/schema/person/e221edb2d0774573bb83a97bca127dcf"},"potentialAction":[{"@type":"SearchAction","target":"http://iot47.com/?s={search_term_string}","query-input":"required name=search_term_string"}],"inLanguage":"vi-VN"},{"@type":"ImageObject","@id":"http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#primaryimage","inLanguage":"vi-VN","url":"http://iot47.com/wp-content/uploads/2020/11/RC522Pinout.jpg","width":582,"height":309,"caption":"RFID RC522"},{"@type":"WebPage","@id":"http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#webpage","url":"http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/","name":"Giao ti\u1ebfp v\u1edbi module th\u1ebb t\u1eeb RFID RC522 - T\u1ef1 h\u1ecdc IoT, L\u1eadp tr\u00ecnh nh\u00fang","isPartOf":{"@id":"http://iot47.com/#website"},"primaryImageOfPage":{"@id":"http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#primaryimage"},"datePublished":"2020-11-18T20:56:51+00:00","dateModified":"2020-11-19T18:26:50+00:00","description":"Ch\u00e0o c\u00e1c b\u1ea1n, h\u00f4m n\u00e0y m\u00ecnh s\u1ebd h\u01b0\u1edbng d\u1eabn c\u00e1c b\u1ea1n t\u00ecm hi\u1ec3u v\u00e0 l\u1eadp tr\u00ecnh giao ti\u1ebfp v\u1edbi module th\u1ebb t\u1eeb RFID RC522, ...","inLanguage":"vi-VN","potentialAction":[{"@type":"ReadAction","target":["http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/"]}]},{"@type":"Article","@id":"http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#article","isPartOf":{"@id":"http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#webpage"},"author":{"@id":"http://iot47.com/#/schema/person/e221edb2d0774573bb83a97bca127dcf"},"headline":"Giao ti\u1ebfp v\u1edbi module th\u1ebb t\u1eeb RFID RC522","datePublished":"2020-11-18T20:56:51+00:00","dateModified":"2020-11-19T18:26:50+00:00","commentCount":"5","mainEntityOfPage":{"@id":"http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#webpage"},"publisher":{"@id":"http://iot47.com/#/schema/person/e221edb2d0774573bb83a97bca127dcf"},"image":{"@id":"http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#primaryimage"},"articleSection":"L\u1eadp tr\u00ecnh nh\u00fang","inLanguage":"vi-VN","potentialAction":[{"@type":"CommentAction","name":"Comment","target":["http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#respond"]}]},{"@type":["Person","Organization"],"@id":"http://iot47.com/#/schema/person/e221edb2d0774573bb83a97bca127dcf","name":"\u0110\u00e0o Nguy\u1ec7n","image":{"@type":"ImageObject","@id":"http://iot47.com/#personlogo","inLanguage":"vi-VN","url":"http://0.gravatar.com/avatar/65f931d305f4b013681f0b86041c4eb2?s=96&d=wavatar&r=g","caption":"\u0110\u00e0o Nguy\u1ec7n"},"logo":{"@id":"http://iot47.com/#personlogo"},"description":"DIY,ch\u1ebf ch\u00e1o, vi\u1ebft blog chia s\u1ebd ki\u1ebfn th\u1ee9c v\u1ec1 l\u1eadp tr\u00ecnh,\u0111i\u1ec7n t\u1eed - IoT. R\u1ea5t mong \u0111\u01b0\u1ee3c giao l\u01b0u, k\u1ebft b\u1ea1n v\u1edbi c\u00e1c b\u1ea1n c\u00f9ng \u0111am m\u00ea. \u0110\u1ecba ch\u1ec9 Facebook: https://www.facebook.com/nguyendao207","sameAs":["https://www.facebook.com/nguyendao207","https://www.youtube.com/gocdiy"]}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel="dns-prefetch" href="http://www.googletagmanager.com/">
+<link rel="dns-prefetch" href="http://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="http://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Dòng thông tin Tự học IoT, Lập trình nhúng »" href="http://iot47.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Dòng phản hồi Tự học IoT, Lập trình nhúng »" href="http://iot47.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Tự học IoT, Lập trình nhúng » Giao tiếp với module thẻ từ RFID RC522 Dòng phản hồi" href="http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/iot47.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.3.10"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/wp-emoji-release.min.js(1).tải xuống" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel="stylesheet" id="crayon-theme-classic-css" href="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/classic.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-font-monaco-css" href="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/monaco.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-block-library-css" href="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/style.min.css" type="text/css" media="all">
+<style id="wp-block-library-inline-css" type="text/css">
+.has-text-align-justify{text-align:justify;}
+</style>
+<link rel="stylesheet" id="mh-google-fonts-css" href="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="mh-magazine-lite-css" href="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/style(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="mh-font-awesome-css" href="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/font-awesome.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="rpt_front_style-css" href="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/front.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack_css-css" href="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/jetpack.css" type="text/css" media="all">
+<script type="text/javascript" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/jquery.js.tải xuống"></script>
+<script type="text/javascript" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/jquery-migrate.min.js.tải xuống"></script>
+<script type="text/javascript" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/scripts.js.tải xuống"></script>
+<script type="text/javascript" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/js" async=""></script>
+<script type="text/javascript">
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-110575053-1', {"anonymize_ip":true} );
+</script>
+<script type="text/javascript" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/jquery.image_zoom.min.js.tải xuống"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var IZ = {"with_woocommerce":"0","exchange_thumbnails":"1","woo_categories":"0","enable_mobile":"","options":{"lensShape":"square","lensSize":200,"lensBorderSize":1,"lensBorderColour":"#ffffff","borderRadius":0,"cursor":"default","zoomWindowWidth":300,"zoomWindowHeight":300,"zoomWindowOffsetx":10,"borderSize":1,"borderColour":"#888888","zoomWindowShadow":4,"lensFadeIn":0.5,"lensFadeOut":0.5,"zoomWindowFadeIn":0.5,"zoomWindowFadeOut":0.5,"easingAmount":12,"tint":"true","tintColour":"#ffffff","tintOpacity":0.1},"woo_slider":"0"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/image_zoom-init.js.tải xuống"></script>
+<link rel="https://api.w.org/" href="http://iot47.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://iot47.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://iot47.com/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.3.10">
+<link rel="shortlink" href="http://iot47.com/?p=2417">
+<link rel="alternate" type="application/json+oembed" href="http://iot47.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fiot47.com%2Fgiao-tiep-voi-module-the-tu-rfid-rc522%2F">
+<link rel="alternate" type="text/xml+oembed" href="http://iot47.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fiot47.com%2Fgiao-tiep-voi-module-the-tu-rfid-rc522%2F&amp;format=xml">
+<meta property="fb:app_id" content="">
+<meta property="fb:admins" content="">
+<meta name="generator" content="Site Kit by Google 1.8.1">
+<link rel="dns-prefetch" href="http://jetpack.wordpress.com/">
+<link rel="dns-prefetch" href="http://s0.wp.com/">
+<link rel="dns-prefetch" href="http://s1.wp.com/">
+<link rel="dns-prefetch" href="http://s2.wp.com/">
+<link rel="dns-prefetch" href="http://public-api.wordpress.com/">
+<link rel="dns-prefetch" href="http://0.gravatar.com/">
+<link rel="dns-prefetch" href="http://1.gravatar.com/">
+<link rel="dns-prefetch" href="http://2.gravatar.com/">
+<link rel="dns-prefetch" href="http://c0.wp.com/">
+<!--[if lt IE 9]>
+<script src="http://iot47.com/wp-content/themes/mh-magazine-lite/js/css3-mediaqueries.js"></script>
+<![endif]-->
+<script async="" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/f(7).txt"></script> <script>
+(adsbygoogle = window.adsbygoogle || []).push({
+google_ad_client: "ca-pub-9493462897830284",
+enable_page_level_ads: true,
+tag_partner: "site_kit"
+});
+</script>
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>      <style>
+      #related_posts_thumbnails li{
+          border-right: 1px solid #dddddd;
+          background-color: #ffffff      }
+      #related_posts_thumbnails li:hover{
+          background-color: #ed3636;
+      }
+      .relpost_content{
+          font-size: 12px;
+          color: #333333;
+      }
+      .relpost-block-single{
+          background-color: #ffffff;
+          border-right: 1px solid  #dddddd;
+          border-left: 1px solid  #dddddd;
+          margin-right: -1px;
+      }
+      .relpost-block-single:hover{
+          background-color: #ed3636;
+      }
+      </style>
+
+  <style type="text/css" id="custom-background-css">
+body.custom-background { background-image: url("http://iot47.com/wp-content/uploads/2019/08/internet.png"); background-position: left top; background-size: auto; background-repeat: repeat; background-attachment: fixed; }
+</style>
+	<link rel="icon" href="http://iot47.com/wp-content/uploads/2019/08/icon-1-150x150.png" sizes="32x32">
+<link rel="icon" href="http://iot47.com/wp-content/uploads/2019/08/icon-1.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="http://iot47.com/wp-content/uploads/2019/08/icon-1.png">
+<meta name="msapplication-TileImage" content="http://iot47.com/wp-content/uploads/2019/08/icon-1.png">
+<meta http-equiv="origin-trial" content="AxujKG9INjsZ8/gUq8+dTruNvk7RjZQ1oFhhgQbcTJKDnZfbzSTE81wvC2Hzaf3TW4avA76LTZEMdiedF1vIbA4AAABueyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2NTI3NzQ0MDAsImlzVGhpcmRQYXJ0eSI6dHJ1ZX0="><meta http-equiv="origin-trial" content="Azuce85ORtSnWe1MZDTv68qpaW3iHyfL9YbLRy0cwcCZwVnePnOmkUJlG8HGikmOwhZU22dElCcfrfX2HhrBPAkAAAB7eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2NTI3NzQ0MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A16nvcdeoOAqrJcmjLRpl1I6f3McDD8EfofAYTt/P/H4/AWwB99nxiPp6kA0fXoiZav908Z8etuL16laFPUdfQsAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2NTI3NzQ0MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AxBHdr0J44vFBQtZUqX9sjiqf5yWZ/OcHRcRMN3H9TH+t90V/j3ENW6C8+igBZFXMJ7G3Pr8Dd13632aLng42wgAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2NTI3NzQ0MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A88BWHFjcawUfKU3lIejLoryXoyjooBXLgWmGh+hNcqMK44cugvsI5YZbNarYvi3roc1fYbHA1AVbhAtuHZflgEAAAB2eyJvcmlnaW4iOiJodHRwczovL2dvb2dsZS5jb206NDQzIiwiZmVhdHVyZSI6IlRydXN0VG9rZW5zIiwiZXhwaXJ5IjoxNjUyNzc0NDAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A8FHS1NmdCwGqD9DwOicnHHY+y27kdWfxKa0YHSGDfv0CSpDKRHTQdQmZVPDUdaFWUsxdgVxlwAd6o+dhJykPA0AAACWeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjQzMTU1MTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlLCJ1c2FnZSI6InN1YnNldCJ9"><meta http-equiv="origin-trial" content="A8zdXi6dr1hwXEUjQrYiyYQGlU3557y5QWDnN0Lwgj9ePt66XMEvNkVWOEOWPd7TP9sBQ25X0Q15Lr1Nn4oGFQkAAACceyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjQzMTU1MTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlLCJ1c2FnZSI6InN1YnNldCJ9"><meta http-equiv="origin-trial" content="A4/Htern2udN9w3yJK9QgWQxQFruxOXsXL7cW60DyCl0EZFGCSme/J33Q/WzF7bBkVvhEWDlcBiUyZaim5CpFQwAAACceyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjQzMTU1MTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlLCJ1c2FnZSI6InN1YnNldCJ9"><link rel="preload" href="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/f(8).txt" as="script"><script type="text/javascript" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/f(8).txt"></script><link rel="preload" href="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/f(9).txt" as="script"><script type="text/javascript" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/f(9).txt"></script><style type="text/css" data-fbcssmodules="css:fb.css.base css:fb.css.dialog css:fb.css.iframewidget css:fb.css.customer_chat_plugin_iframe">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#043b87;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}
+.fb_mpn_mobile_landing_page_slide_out{animation-duration:200ms;animation-name:fb_mpn_landing_page_slide_out;transition-timing-function:ease-in}.fb_mpn_mobile_landing_page_slide_out_from_left{animation-duration:200ms;animation-name:fb_mpn_landing_page_slide_out_from_left;transition-timing-function:ease-in}.fb_mpn_mobile_landing_page_slide_up{animation-duration:500ms;animation-name:fb_mpn_landing_page_slide_up;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_in{animation-duration:300ms;animation-name:fb_mpn_bounce_in;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_out{animation-duration:300ms;animation-name:fb_mpn_bounce_out;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_out_v2{animation-duration:300ms;animation-name:fb_mpn_fade_out;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_v2{animation-duration:300ms;animation-name:fb_bounce_in_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_from_left{animation-duration:300ms;animation-name:fb_bounce_in_from_left;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2{animation-duration:300ms;animation-name:fb_bounce_out_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_from_left{animation-duration:300ms;animation-name:fb_bounce_out_from_left;transition-timing-function:ease-in}.fb_invisible_flow{display:inherit;height:0;overflow-x:hidden;width:0}@keyframes fb_mpn_landing_page_slide_out{0%{margin:0 12px;width:100% - 24px}60%{border-radius:18px}100%{border-radius:50%;margin:0 24px;width:60px}}@keyframes fb_mpn_landing_page_slide_out_from_left{0%{left:12px;width:100% - 24px}60%{border-radius:18px}100%{border-radius:50%;left:12px;width:60px}}@keyframes fb_mpn_landing_page_slide_up{0%{bottom:0;opacity:0}100%{bottom:24px;opacity:1}}@keyframes fb_mpn_bounce_in{0%{opacity:.5;top:100%}100%{opacity:1;top:0}}@keyframes fb_mpn_fade_out{0%{bottom:30px;opacity:1}100%{bottom:0;opacity:0}}@keyframes fb_mpn_bounce_out{0%{opacity:1;top:0}100%{opacity:.5;top:100%}}@keyframes fb_bounce_in_v2{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}50%{transform:scale(1.03, 1.03);transform-origin:bottom right}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}}@keyframes fb_bounce_in_from_left{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom left}50%{transform:scale(1.03, 1.03);transform-origin:bottom left}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom left}}@keyframes fb_bounce_out_v2{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}}@keyframes fb_bounce_out_from_left{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom left}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom left}}@keyframes slideInFromBottom{0%{opacity:.1;transform:translateY(100%)}100%{opacity:1;transform:translateY(0)}}@keyframes slideInFromBottomDelay{0%{opacity:0;transform:translateY(100%)}97%{opacity:0;transform:translateY(100%)}100%{opacity:1;transform:translateY(0)}}</style></head>
+<body id="mh-mobile" class="post-template-default single single-post postid-2417 single-format-standard custom-background mh-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage" aria-hidden="false" style="padding: 0px;">
+<div class="mh-container mh-container-outer" style="height: auto !important;">
+<div class="mh-header-mobile-nav mh-clearfix"></div>
+<header class="mh-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+	<div class="mh-container mh-container-inner mh-row mh-clearfix">
+		<div class="mh-custom-header mh-clearfix">
+<div class="mh-site-identity">
+<div class="mh-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+<div class="mh-header-text">
+<a class="mh-header-text-link" href="http://iot47.com/" title="Tự học IoT, Lập trình nhúng" rel="home">
+<h2 class="mh-header-title">Tự học IoT, Lập trình nhúng</h2>
+<h3 class="mh-header-tagline">Blog chia sẻ kiến thức IoT, lập trình vi điều khiển, thiết kế mạch điện tử</h3>
+</a>
+</div>
+</div>
+</div>
+</div>
+	</div>
+	<div class="mh-main-nav-wrap"><div class="slicknav_menu"><a href="http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#" aria-haspopup="true" tabindex="0" class="slicknav_btn slicknav_collapsed" style="outline: none;"><span class="slicknav_menutxt">MENU</span><span class="slicknav_icon"><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span></span></a><nav class="slicknav_nav slicknav_hidden" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement" aria-hidden="true" role="menu" style="display: none;">
+			<div class="menu-main-menu-container"><ul class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-22"><a href="http://iot47.com/" role="menuitem">Trang chủ</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-25 slicknav_collapsed slicknav_parent"><a href="http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item" style="outline: none;"><a href="http://iot47.com/category/iot-tutorial/">IoT</a>
+<span class="slicknav_arrow">►</span></a><ul class="sub-menu slicknav_hidden" role="menu" aria-hidden="true" style="display: none;">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1161"><a href="http://iot47.com/category/iot-tutorial/giao-tiep-esp8266/" role="menuitem" tabindex="-1">WIFI-ESP8266</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1160"><a href="http://iot47.com/category/iot-tutorial/ethernetgiao-tiep-enc28j60/" role="menuitem" tabindex="-1">Ethernet</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-26"><a href="http://iot47.com/category/lap-trinh-nhung/" role="menuitem">Lập trình nhúng</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-90"><a href="http://iot47.com/category/ma-tran-led/" role="menuitem">Led ma trận</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2397"><a href="http://iot47.com/category/lcd-va-gui/" role="menuitem">LCD và GUI</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2551 slicknav_collapsed slicknav_parent"><a href="http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item" style="outline: none;"><a href="http://iot47.com/category/vi-dieu-khien/">Vi điều khiển</a>
+<span class="slicknav_arrow">►</span></a><ul class="sub-menu slicknav_hidden" role="menu" aria-hidden="true" style="display: none;">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2552"><a href="http://iot47.com/category/vi-dieu-khien/8051/" role="menuitem" tabindex="-1">8051</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2553"><a href="http://iot47.com/category/vi-dieu-khien/avr/" role="menuitem" tabindex="-1">AVR</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2554"><a href="http://iot47.com/category/vi-dieu-khien/stm8/" role="menuitem" tabindex="-1">STM8</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2741"><a href="http://iot47.com/category/vi-dieu-khien/stm32/" role="menuitem" tabindex="-1">STM32</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-732"><a href="http://iot47.com/category/san-pham/" role="menuitem">Sản phẩm</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-30"><a href="https://www.youtube.com/gocdiy" role="menuitem">DIY</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2376"><a href="http://iot47.com/ung-ho-cho-blog/" role="menuitem">Donate</a></li>
+</ul></div>		</nav></div>
+		<nav class="mh-navigation mh-main-nav mh-container mh-container-inner mh-clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+			<div class="menu-main-menu-container"><ul id="menu-main-menu" class="menu"><li id="menu-item-22" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-22"><a href="http://iot47.com/">Trang chủ</a></li>
+<li id="menu-item-25" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-25"><a href="http://iot47.com/category/iot-tutorial/">IoT</a>
+<ul class="sub-menu">
+	<li id="menu-item-1161" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1161"><a href="http://iot47.com/category/iot-tutorial/giao-tiep-esp8266/">WIFI-ESP8266</a></li>
+	<li id="menu-item-1160" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1160"><a href="http://iot47.com/category/iot-tutorial/ethernetgiao-tiep-enc28j60/">Ethernet</a></li>
+</ul>
+</li>
+<li id="menu-item-26" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-26"><a href="http://iot47.com/category/lap-trinh-nhung/">Lập trình nhúng</a></li>
+<li id="menu-item-90" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-90"><a href="http://iot47.com/category/ma-tran-led/">Led ma trận</a></li>
+<li id="menu-item-2397" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2397"><a href="http://iot47.com/category/lcd-va-gui/">LCD và GUI</a></li>
+<li id="menu-item-2551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2551"><a href="http://iot47.com/category/vi-dieu-khien/">Vi điều khiển</a>
+<ul class="sub-menu">
+	<li id="menu-item-2552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2552"><a href="http://iot47.com/category/vi-dieu-khien/8051/">8051</a></li>
+	<li id="menu-item-2553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2553"><a href="http://iot47.com/category/vi-dieu-khien/avr/">AVR</a></li>
+	<li id="menu-item-2554" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2554"><a href="http://iot47.com/category/vi-dieu-khien/stm8/">STM8</a></li>
+	<li id="menu-item-2741" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2741"><a href="http://iot47.com/category/vi-dieu-khien/stm32/">STM32</a></li>
+</ul>
+</li>
+<li id="menu-item-732" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-732"><a href="http://iot47.com/category/san-pham/">Sản phẩm</a></li>
+<li id="menu-item-30" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-30"><a href="https://www.youtube.com/gocdiy">DIY</a></li>
+<li id="menu-item-2376" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2376"><a href="http://iot47.com/ung-ho-cho-blog/">Donate</a></li>
+</ul></div>		</nav>
+	</div>
+</header><div class="mh-wrapper mh-clearfix" style="height: auto !important;">
+	<div id="main-content" class="mh-content" role="main" itemprop="mainContentOfPage"><article id="post-2417" class="post-2417 post type-post status-publish format-standard has-post-thumbnail hentry category-lap-trinh-nhung">
+	<header class="entry-header mh-clearfix"><h1 class="entry-title">Giao tiếp với module thẻ từ RFID RC522</h1><p class="mh-meta entry-meta">
+<span class="entry-meta-date updated"><i class="fa fa-clock-o"></i><a href="http://iot47.com/2020/11/">19 Tháng Mười Một, 2020</a></span>
+<span class="entry-meta-author author vcard"><i class="fa fa-user"></i><a class="fn" href="http://iot47.com/author/daonguyen/">Đào Nguyện</a></span>
+<span class="entry-meta-categories"><i class="fa fa-folder-open-o"></i><a href="http://iot47.com/category/lap-trinh-nhung/" rel="category tag">Lập trình nhúng</a></span>
+<span class="entry-meta-comments"><i class="fa fa-comment-o"></i><a class="mh-comment-scroll" href="http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#mh-comments">5</a></span>
+</p>
+	</header>
+		<div class="entry-content mh-clearfix">
+<figure class="entry-thumbnail">
+<img src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/RC522Pinout.jpg" alt="RFID RC522" title="RC522Pinout">
+</figure>
+
+<p>Chào các bạn, hôm này mình sẽ hướng dẫn các bạn tìm hiểu và lập trình giao tiếp với module thẻ từ RFID RC522, vi điều khiển được sử dụng trong bài này kit stm32f103c8t6 và Cubemx để khởi tạo code</p>
+
+
+
+<h2>Kết nối</h2>
+
+
+
+<figure class="wp-block-table"><table class=""><tbody><tr><td>STM32</td><td>RFID</td></tr><tr><td>B15</td><td>MOSI</td></tr><tr><td>B14</td><td>MISO</td></tr><tr><td>B13</td><td>SCK</td></tr><tr><td>C15</td><td>CS (SDA)</td></tr></tbody></table></figure>
+
+
+
+<h2>Khởi tạo code trên cubeMX</h2>
+
+
+
+<p>Chọn RCC chọn thạch anh ngoài<br>Chọn SYS bật serial debug<br>Bật SPI2 chế độ full master, tốc độ spi tầm 10Mhz trở lại<br>Cấu hình output chân C15</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/image.png" alt="" class="wp-image-2419" srcset="http://iot47.com/wp-content/uploads/2020/11/image.png 652w, http://iot47.com/wp-content/uploads/2020/11/image-300x167.png 300w" sizes="(max-width: 652px) 100vw, 652px"></figure></div>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/image-1.png" alt="" class="wp-image-2420" srcset="http://iot47.com/wp-content/uploads/2020/11/image-1.png 463w, http://iot47.com/wp-content/uploads/2020/11/image-1-300x37.png 300w" sizes="(max-width: 463px) 100vw, 463px"></figure></div>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/image-2.png" alt="stm32f103 rc522 rfid" class="wp-image-2421" srcset="http://iot47.com/wp-content/uploads/2020/11/image-2.png 525w, http://iot47.com/wp-content/uploads/2020/11/image-2-300x244.png 300w" sizes="(max-width: 525px) 100vw, 525px"></figure></div>
+
+
+
+<p>Sinh code và mở project lên</p>
+
+
+
+<h2>Lập trình</h2>
+
+
+
+<p>Có thể chia phần lập trình ra làm 2 nhóm chính</p>
+
+
+
+<ul><li>Nhóm chương trình giao tiếp với module RC522 (PCD)</li><li>Nhóm chương trình giao tiếp với miếng thẻ từ (PICC) ( thông qua mạch RC522)</li></ul>
+
+
+
+<h4>Phần 1: Giao tiếp với module RC522</h4>
+
+
+
+<p>Trước tiên phải tải datasheet về đã: <a href="https://www.nxp.com/docs/en/data-sheet/MFRC522.pdf">https://www.nxp.com/docs/en/data-sheet/MFRC522.pdf</a></p>
+
+
+
+<p>Module RFID mặc định ra chân SPI nên chúng ta sẽ sử dụng bộ SPI2 để giao tiếp với nó nhé</p>
+
+
+
+<p><strong>Hàm truyền nhận spi cơ bản</strong></p>
+
+
+
+<!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-61c8201da89b0892163914" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -19px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">C</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">uint8_t spi_transmit(uint8_t byte)
+{
+	uint8_t rv;
+	HAL_SPI_TransmitReceive(&amp;hspi2,(uint8_t *)&amp;byte,(uint8_t *)&amp;rv,1,100);
+	return rv;
+}</textarea></div>
+			<div class="crayon-main" style="max-height: 500px; position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-61c8201da89b0892163914-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89b0892163914-2">2</div><div class="crayon-num" data-line="crayon-61c8201da89b0892163914-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89b0892163914-4">4</div><div class="crayon-num" data-line="crayon-61c8201da89b0892163914-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89b0892163914-6">6</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-61c8201da89b0892163914-1"><span class="crayon-e">uint8_t </span><span class="crayon-e">spi_transmit</span><span class="crayon-sy">(</span><span class="crayon-e">uint8_t </span><span class="crayon-t">byte</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89b0892163914-2"><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-61c8201da89b0892163914-3"><span class="crayon-h">	</span><span class="crayon-e">uint8_t </span><span class="crayon-v">rv</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89b0892163914-4"><span class="crayon-h">	</span><span class="crayon-e">HAL_SPI_TransmitReceive</span><span class="crayon-sy">(</span><span class="crayon-o">&amp;</span><span class="crayon-v">hspi2</span><span class="crayon-sy">,</span><span class="crayon-sy">(</span><span class="crayon-v">uint8_t</span><span class="crayon-h"> </span><span class="crayon-o">*</span><span class="crayon-sy">)</span><span class="crayon-o">&amp;</span><span class="crayon-t">byte</span><span class="crayon-sy">,</span><span class="crayon-sy">(</span><span class="crayon-v">uint8_t</span><span class="crayon-h"> </span><span class="crayon-o">*</span><span class="crayon-sy">)</span><span class="crayon-o">&amp;</span><span class="crayon-v">rv</span><span class="crayon-sy">,</span><span class="crayon-cn">1</span><span class="crayon-sy">,</span><span class="crayon-cn">100</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-61c8201da89b0892163914-5"><span class="crayon-h">	</span><span class="crayon-st">return</span><span class="crayon-h"> </span><span class="crayon-v">rv</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89b0892163914-6"><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0045 seconds] -->
+
+
+
+
+<p>Hàm này không có gì phải giải thích, chỉ đơn giản là dùng bộ SPI để gửi 1byte đi và nhận về 1 byte</p>
+
+
+
+<p><strong>Các hàm đọc ghi module RFID</strong></p>
+
+
+
+<p>Quá trình giao tiếp về cơ bản là đọc và ghi giá trị vào các thanh ghi của module RFID, để đọc và ghi thì chúng ta cần biết địa chỉ của thanh ghi tương ứng cũng như chức năng tương ứng của thanh ghi đó. Nói chung, quá trình giao tiếp luôn bắt đầu bằng việc gửi đi địa chỉ của 1 thanh ghi nào đó. Địa chỉ thanh ghi được mã hóa bằng 6 bits</p>
+
+
+
+<p><strong>Quá trình đọc</strong></p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/image-3.png" alt="" class="wp-image-2423" srcset="http://iot47.com/wp-content/uploads/2020/11/image-3.png 871w, http://iot47.com/wp-content/uploads/2020/11/image-3-300x71.png 300w, http://iot47.com/wp-content/uploads/2020/11/image-3-768x181.png 768w" sizes="(max-width: 871px) 100vw, 871px"></figure></div>
+
+
+
+<p>Do trong giao thức SPI, byte dữ liệu trả về luôn muộn hơn byte gửi đi nên byte đọc về thứ 1 sẽ là byte rác. Và để đọc được byte cuối cùng thì gửi nhét thêm 1 byte rác (mặc định là 0x00)</p>
+
+
+
+<p><strong> Quá trình ghi</strong></p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/image-4.png" alt="" class="wp-image-2425" srcset="http://iot47.com/wp-content/uploads/2020/11/image-4.png 957w, http://iot47.com/wp-content/uploads/2020/11/image-4-300x117.png 300w, http://iot47.com/wp-content/uploads/2020/11/image-4-768x299.png 768w" sizes="(max-width: 957px) 100vw, 957px"></figure></div>
+
+
+
+<p>Để ghi dữ liệu vào thanh ghi nào đó, ta gửi địa chỉ của nó đi sau đó gửi kèm theo dữ liệu. Tùy thuộc vào địa chỉ đó yêu cầu mấy byte dữ liệu ta gửi đúng số byte dữ liệu tương ứng</p>
+
+
+
+<p>Module RFID phân biệt lệnh đọc hay ghi bằng bit 0 của địa chỉ thanh ghi, do địa chỉ thanh ghi chỉ chiếm 6 bis nên vẫn còn thừa 2 bits, module này yêu cầu chúng ta phải dịch trái địa chỉ thanh ghi lên cao, chừa lại bit cao nhất (bit 7) để nó phân biệt lệnh này là đọc hay ghi và bit cuối (bits 0 ) nó bắt phải là 0<br>Cụ thể: bit 0 là 1 thì đây là đọc, ngược lại bit 0 là 0 thì đây là ghi</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/image-5.png" alt="" class="wp-image-2427" srcset="http://iot47.com/wp-content/uploads/2020/11/image-5.png 861w, http://iot47.com/wp-content/uploads/2020/11/image-5-300x46.png 300w, http://iot47.com/wp-content/uploads/2020/11/image-5-768x119.png 768w" sizes="(max-width: 861px) 100vw, 861px"></figure></div>
+
+
+
+<p><strong>Hàm ghi dữ liệu vào 1 thanh ghi</strong></p>
+
+
+
+<!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-61c8201da89c3192031120" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -19px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">C</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">void RFID_write(unsigned char reg, unsigned char data)
+{ 
+	MFRC522_CS_EN;
+	spi_transmit((reg&lt;&lt;1)&amp;0x7E);
+	spi_transmit(data); 
+	MFRC522_CS_DIS;
+}</textarea></div>
+			<div class="crayon-main" style="max-height: 500px; position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-61c8201da89c3192031120-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89c3192031120-2">2</div><div class="crayon-num" data-line="crayon-61c8201da89c3192031120-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89c3192031120-4">4</div><div class="crayon-num" data-line="crayon-61c8201da89c3192031120-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89c3192031120-6">6</div><div class="crayon-num" data-line="crayon-61c8201da89c3192031120-7">7</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-61c8201da89c3192031120-1"><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">RFID_write</span><span class="crayon-sy">(</span><span class="crayon-t">unsigned</span><span class="crayon-h"> </span><span class="crayon-t">char</span><span class="crayon-h"> </span><span class="crayon-v">reg</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-t">unsigned</span><span class="crayon-h"> </span><span class="crayon-t">char</span><span class="crayon-h"> </span><span class="crayon-v">data</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89c3192031120-2"><span class="crayon-sy">{</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-61c8201da89c3192031120-3"><span class="crayon-h">	</span><span class="crayon-v">MFRC522_CS_EN</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89c3192031120-4"><span class="crayon-h">	</span><span class="crayon-e">spi_transmit</span><span class="crayon-sy">(</span><span class="crayon-sy">(</span><span class="crayon-v">reg</span><span class="crayon-o">&lt;&lt;</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span><span class="crayon-o">&amp;</span><span class="crayon-cn">0x7E</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-61c8201da89c3192031120-5"><span class="crayon-h">	</span><span class="crayon-e">spi_transmit</span><span class="crayon-sy">(</span><span class="crayon-v">data</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span><span class="crayon-h"> </span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89c3192031120-6"><span class="crayon-h">	</span><span class="crayon-v">MFRC522_CS_DIS</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-61c8201da89c3192031120-7"><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0005 seconds] -->
+
+
+
+
+<p>Phép &amp;0x7E có tác dụng xóa bit 0 về 0 và xóa bit 7 về 0 (thể hiện đây là lệnh ghi vào )</p>
+
+
+
+<p> <strong>Hàm đọc dữ liệu vào 1 thanh ghi</strong> </p>
+
+
+
+<!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-61c8201da89ca460010820" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -19px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">C</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">unsigned char RFID_read(unsigned char reg)
+        {
+        unsigned char data; 
+        MFRC522_CS_EN;
+        spi_transmit(((reg&lt;&lt;1)&amp;0x7E)|0x80);
+        data = spi_transmit(0x00); 
+        MFRC522_CS_DIS;
+        return data;
+        } </textarea></div>
+			<div class="crayon-main" style="max-height: 500px; position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-61c8201da89ca460010820-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89ca460010820-2">2</div><div class="crayon-num" data-line="crayon-61c8201da89ca460010820-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89ca460010820-4">4</div><div class="crayon-num" data-line="crayon-61c8201da89ca460010820-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89ca460010820-6">6</div><div class="crayon-num" data-line="crayon-61c8201da89ca460010820-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89ca460010820-8">8</div><div class="crayon-num" data-line="crayon-61c8201da89ca460010820-9">9</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-61c8201da89ca460010820-1"><span class="crayon-t">unsigned</span><span class="crayon-h"> </span><span class="crayon-t">char</span><span class="crayon-h"> </span><span class="crayon-e">RFID_read</span><span class="crayon-sy">(</span><span class="crayon-t">unsigned</span><span class="crayon-h"> </span><span class="crayon-t">char</span><span class="crayon-h"> </span><span class="crayon-v">reg</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89ca460010820-2"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-61c8201da89ca460010820-3"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-t">unsigned</span><span class="crayon-h"> </span><span class="crayon-t">char</span><span class="crayon-h"> </span><span class="crayon-v">data</span><span class="crayon-sy">;</span><span class="crayon-h"> </span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89ca460010820-4"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">MFRC522_CS_EN</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-61c8201da89ca460010820-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">spi_transmit</span><span class="crayon-sy">(</span><span class="crayon-sy">(</span><span class="crayon-sy">(</span><span class="crayon-v">reg</span><span class="crayon-o">&lt;&lt;</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span><span class="crayon-o">&amp;</span><span class="crayon-cn">0x7E</span><span class="crayon-sy">)</span><span class="crayon-o">|</span><span class="crayon-cn">0x80</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89ca460010820-6"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">data</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">spi_transmit</span><span class="crayon-sy">(</span><span class="crayon-cn">0x00</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-61c8201da89ca460010820-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">MFRC522_CS_DIS</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89ca460010820-8"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">return</span><span class="crayon-h"> </span><span class="crayon-v">data</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-61c8201da89ca460010820-9"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span><span class="crayon-h"> </span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0006 seconds] -->
+
+
+
+
+<p>Phép |0x80 có tác dụng set bit 7 lên cao thể hiện đây là đọc ra</p>
+
+
+
+<p>Đôi khi chúng ta chỉ cần đọc và ghi 1 bit của cả thanh ghi, để làm được việc này chúng ta cần đọc toàn bộ dự liệu của thanh ghi đó ra rồi dùng toán tử OR và AND để set giá trị mong muốn lên bit cần sửa đổi. Do vậy mình tạo thêm 2 hàm tên là <span style="color:#00d084" class="tadv-color">SetBitMask</span> và <span style="color:#00d084" class="tadv-color">ClearBitMask</span> để phục vụ việc thao tác lên 1 bit trên thanh ghi</p>
+
+
+
+<!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-61c8201da89ce672371531" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -19px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">C</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">void SetBitMask(unsigned char reg,unsigned char mask)  
+        {
+        unsigned char tmp = 0x0;
+        tmp = RFID_read(reg);
+        RFID_write(reg,tmp | mask);  
+        }
+void ClearBitMask(unsigned char reg,unsigned char mask)  
+        {
+        unsigned char tmp = 0x0;
+        tmp = RFID_read(reg);
+        RFID_write(reg, tmp &amp; ~mask);  
+        } </textarea></div>
+			<div class="crayon-main" style="max-height: 500px; position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-61c8201da89ce672371531-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89ce672371531-2">2</div><div class="crayon-num" data-line="crayon-61c8201da89ce672371531-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89ce672371531-4">4</div><div class="crayon-num" data-line="crayon-61c8201da89ce672371531-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89ce672371531-6">6</div><div class="crayon-num" data-line="crayon-61c8201da89ce672371531-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89ce672371531-8">8</div><div class="crayon-num" data-line="crayon-61c8201da89ce672371531-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89ce672371531-10">10</div><div class="crayon-num" data-line="crayon-61c8201da89ce672371531-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89ce672371531-12">12</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-61c8201da89ce672371531-1"><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">SetBitMask</span><span class="crayon-sy">(</span><span class="crayon-t">unsigned</span><span class="crayon-h"> </span><span class="crayon-t">char</span><span class="crayon-h"> </span><span class="crayon-v">reg</span><span class="crayon-sy">,</span><span class="crayon-t">unsigned</span><span class="crayon-h"> </span><span class="crayon-t">char</span><span class="crayon-h"> </span><span class="crayon-v">mask</span><span class="crayon-sy">)</span><span class="crayon-h">&nbsp;&nbsp;</span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89ce672371531-2"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-61c8201da89ce672371531-3"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-t">unsigned</span><span class="crayon-h"> </span><span class="crayon-t">char</span><span class="crayon-h"> </span><span class="crayon-v">tmp</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-cn">0x0</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89ce672371531-4"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">tmp</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">RFID_read</span><span class="crayon-sy">(</span><span class="crayon-v">reg</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-61c8201da89ce672371531-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">RFID_write</span><span class="crayon-sy">(</span><span class="crayon-v">reg</span><span class="crayon-sy">,</span><span class="crayon-v">tmp</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">mask</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span><span class="crayon-h">&nbsp;&nbsp;</span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89ce672371531-6"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-61c8201da89ce672371531-7"><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">ClearBitMask</span><span class="crayon-sy">(</span><span class="crayon-t">unsigned</span><span class="crayon-h"> </span><span class="crayon-t">char</span><span class="crayon-h"> </span><span class="crayon-v">reg</span><span class="crayon-sy">,</span><span class="crayon-t">unsigned</span><span class="crayon-h"> </span><span class="crayon-t">char</span><span class="crayon-h"> </span><span class="crayon-v">mask</span><span class="crayon-sy">)</span><span class="crayon-h">&nbsp;&nbsp;</span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89ce672371531-8"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-61c8201da89ce672371531-9"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-t">unsigned</span><span class="crayon-h"> </span><span class="crayon-t">char</span><span class="crayon-h"> </span><span class="crayon-v">tmp</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-cn">0x0</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89ce672371531-10"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">tmp</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">RFID_read</span><span class="crayon-sy">(</span><span class="crayon-v">reg</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-61c8201da89ce672371531-11"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">RFID_write</span><span class="crayon-sy">(</span><span class="crayon-v">reg</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">tmp</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-h"> </span><span class="crayon-o">~</span><span class="crayon-v">mask</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span><span class="crayon-h">&nbsp;&nbsp;</span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89ce672371531-12"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span><span class="crayon-h"> </span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0010 seconds] -->
+
+
+
+
+<p>Vậy là xong 2 hàm đọc ghi cơ bản, bây giờ tiến hành sử dụng 2 hàm này để thực hiện giao tiếp với module RC522</p>
+
+
+
+<h3>Hàm khởi tạo module</h3>
+
+
+
+<p>Đương nhiên rồi, moudule nào muốn hoạt động được thì cũng phải khởi tạo các chế độ hoạt động cho nó, một số thanh ghi cần quan tâm, cụ thể chi tiết nó là gì thì các bạn đọc datasheet nhé</p>
+
+
+
+<p>Thanh ghi  <strong>ModeReg register (0x11)</strong></p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/image-6.png" alt="" class="wp-image-2431" srcset="http://iot47.com/wp-content/uploads/2020/11/image-6.png 861w, http://iot47.com/wp-content/uploads/2020/11/image-6-300x68.png 300w, http://iot47.com/wp-content/uploads/2020/11/image-6-768x174.png 768w" sizes="(max-width: 861px) 100vw, 861px"></figure></div>
+
+
+
+<p>Giá trị cài đặt: 0x3D<br><span style="color:#f78da7" class="tadv-color">RFID_write(0x11,0x3D);   </span>     </p>
+
+
+
+<p> Thanh ghi <strong>TReloadReg (0x2C 0x2D) </strong> đây là thanh ghi 16bit nên cần phải ghi 2 lần.<br>Giá trị cần ghi 0x0030<br><span style="color:#f78da7" class="tadv-color">RFID_write(0x2D,30);       <br>RFID_write(0x2C,0);</span></p>
+
+
+
+<p>Thanh ghi <strong>TModeReg </strong> (0x2A 0x2B) đây cũng là thanh ghi 16 bit nên có cần ghi 2 lần</p>
+
+
+
+<p><span style="color:#f78da7" class="tadv-color">RFID_write(0x2A,0x8D);<br>RFID_write(0x2B,0x3E);</span></p>
+
+
+
+<p>Thanh ghi  <strong>TxASKReg </strong>(0x15)</p>
+
+
+
+<p><span style="color:#f78da7" class="tadv-color"> RFID_write(0x15,0x40);</span></p>
+
+
+
+<p>Đây là các cài đặt cơ bản cho module RFID, các bạn muốn hiểu rõ cụ thể nó ra làm sao thì tham khảo chi tiết chức năng các thanh ghi này trong datasheet nhé !</p>
+
+
+
+<p>Thanh ghi điều khiển angten  <strong>TxControlReg   </strong>(0x14)</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/image-7.png" alt="" class="wp-image-2436" srcset="http://iot47.com/wp-content/uploads/2020/11/image-7.png 885w, http://iot47.com/wp-content/uploads/2020/11/image-7-300x62.png 300w, http://iot47.com/wp-content/uploads/2020/11/image-7-768x159.png 768w" sizes="(max-width: 885px) 100vw, 885px"></figure></div>
+
+
+
+<p>2 bit đầu tiên của thanh ghi này nếu được set=1 thì sẽ kích hoạt ang ten, ngược lại thì tắt</p>
+
+
+
+<!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-61c8201da89d5177390543" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -19px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">C</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">void MFRC522_AntennaOn(void)
+        {
+        unsigned char i;
+        i = RFID_read(0x14);
+        if (!(i &amp; 0x03))
+                {
+                SetBitMask(0x14, 0x03);
+                }
+        }
+void MFRC522_AntennaOff(void)
+        {
+        ClearBitMask(0x14, 0x03);
+        } </textarea></div>
+			<div class="crayon-main" style="max-height: 500px; position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-61c8201da89d5177390543-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89d5177390543-2">2</div><div class="crayon-num" data-line="crayon-61c8201da89d5177390543-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89d5177390543-4">4</div><div class="crayon-num" data-line="crayon-61c8201da89d5177390543-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89d5177390543-6">6</div><div class="crayon-num" data-line="crayon-61c8201da89d5177390543-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89d5177390543-8">8</div><div class="crayon-num" data-line="crayon-61c8201da89d5177390543-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89d5177390543-10">10</div><div class="crayon-num" data-line="crayon-61c8201da89d5177390543-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-61c8201da89d5177390543-12">12</div><div class="crayon-num" data-line="crayon-61c8201da89d5177390543-13">13</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-61c8201da89d5177390543-1"><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">MFRC522_AntennaOn</span><span class="crayon-sy">(</span><span class="crayon-t">void</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89d5177390543-2"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-61c8201da89d5177390543-3"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-t">unsigned</span><span class="crayon-h"> </span><span class="crayon-t">char</span><span class="crayon-h"> </span><span class="crayon-v">i</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89d5177390543-4"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">i</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">RFID_read</span><span class="crayon-sy">(</span><span class="crayon-cn">0x14</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-61c8201da89d5177390543-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">if</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-o">!</span><span class="crayon-sy">(</span><span class="crayon-v">i</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-h"> </span><span class="crayon-cn">0x03</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89d5177390543-6"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-61c8201da89d5177390543-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">SetBitMask</span><span class="crayon-sy">(</span><span class="crayon-cn">0x14</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">0x03</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89d5177390543-8"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-61c8201da89d5177390543-9"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89d5177390543-10"><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">MFRC522_AntennaOff</span><span class="crayon-sy">(</span><span class="crayon-t">void</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-61c8201da89d5177390543-11"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-61c8201da89d5177390543-12"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">ClearBitMask</span><span class="crayon-sy">(</span><span class="crayon-cn">0x14</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">0x03</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-61c8201da89d5177390543-13"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span><span class="crayon-h"> </span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0007 seconds] -->
+
+
+
+
+<p>Còn nữa …</p>
+<!-- relpost-thumb-wrapper --><div class="relpost-thumb-wrapper"><!-- filter-class --><div class="relpost-thumb-container"><h3>Related posts:</h3><div style="clear: both"></div><div style="clear: both"></div><!-- relpost-block-container --><div class="relpost-block-container"><a class="relpost-block-single" href="http://iot47.com/nap-chuong-trinh-cho-stm32c8t6-qua-bootloader/"><div style="width: 150px; height: 225px;"><div class="relpost-block-single-image" alt="Nạp chương trình cho stm32c8t6 qua bootloader" style=" background: transparent url(http://iot47.com/wp-content/uploads/2020/03/bootloader-la-gi-4-150x150.jpg) no-repeat scroll 0% 0%; width: 150px; height: 150px; "></div><div class="relpost-block-single-text" style="font-family: Arial;  font-size: 12px;  color: #333333;">Nạp chương trình cho stm32c8t6 qua bootloader</div></div></a><a class="relpost-block-single" href="http://iot47.com/lap-trinh-led-day-ucs1903-voi-stm32f103c8t6/"><div style="width: 150px; height: 225px;"><div class="relpost-block-single-image" alt="dây led usc1903" style=" background: transparent url(http://iot47.com/wp-content/uploads/2019/12/image-2-150x150.png) no-repeat scroll 0% 0%; width: 150px; height: 150px; "></div><div class="relpost-block-single-text" style="font-family: Arial;  font-size: 12px;  color: #333333;">Lập trình LED dây UCS1903 với stm32f103c8t6</div></div></a><a class="relpost-block-single" href="http://iot47.com/hieu-chinh-gamma/"><div style="width: 150px; height: 225px;"><div class="relpost-block-single-image" alt="gamma" style=" background: transparent url(http://iot47.com/wp-content/uploads/2019/12/image-25-150x150.png) no-repeat scroll 0% 0%; width: 150px; height: 150px; "></div><div class="relpost-block-single-text" style="font-family: Arial;  font-size: 12px;  color: #333333;">Hiệu chỉnh Gamma</div></div></a><a class="relpost-block-single" href="http://iot47.com/giao-tiep-voi-graphic-lcd/"><div style="width: 150px; height: 225px;"><div class="relpost-block-single-image" alt="IOT47 - LCD nokia 5110" style=" background: transparent url(http://iot47.com/wp-content/uploads/2019/08/LCD-5110-so-do-chan-150x150.jpg) no-repeat scroll 0% 0%; width: 150px; height: 150px; "></div><div class="relpost-block-single-text" style="font-family: Arial;  font-size: 12px;  color: #333333;">Tìm hiểu màn hình LCD 5110 và cách giao tiếp với vi điều khiển</div></div></a></div><!-- close relpost-block-container --><div style="clear: both"></div></div><!-- close filter class --></div><!-- close relpost-thumb-wrapper --><!-- Like & Share Button: http://peadig.com/wordpress-plugins/facebook-like-share-button/ --><div class="fb-like fb_iframe_widget" data-href="http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;app_id=&amp;container_width=678&amp;href=http%3A%2F%2Fiot47.com%2Fgiao-tiep-voi-module-the-tu-rfid-rc522%2F&amp;layout=standard&amp;locale=vi_VN&amp;sdk=joey&amp;share=true&amp;show_faces=true"><span style="vertical-align: bottom; width: 450px; height: 28px;"><iframe name="f1cc9e091e18fa4" width="1000px" height="1000px" data-testid="fb:like Facebook Social Plugin" title="fb:like Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/like.html" style="border: none; visibility: visible; width: 450px; height: 28px;" class=""></iframe></span></div>	</div><div id="text-2" class="mh-widget mh-posts-2 widget_text">			<div class="textwidget"><p>&nbsp;</p>
+<p><strong>Từ tác giả:</strong></p>
+<p>Nếu có bất kì thắc mắc nào trong bài viết, vui lòng để lại comment dưới mỗi bài ! Mình sẽ không trả lời thắc mắc của các bạn ở facebook hay email !</p>
+<p>Nếu trong phần code bạn nhìn thấy nhưng thứ kiểu như &amp;amp; thì đó là lỗi hiển thị, cụ thể 3 kí tự &lt; &gt; &amp; bị biến đổi thành như thế<br>
+&amp;amp; là &amp;<br>
+&amp;lt;&nbsp; là &lt;<br>
+&amp;gt; là &gt;</p>
+</div>
+		</div></article><div class="google-auto-placed" style="width: 100%; height: auto; clear: both; text-align: center;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-9493462897830284" data-adsbygoogle-status="done" style="display: block; margin: 10px auto; background-color: transparent; height: 280px;"><ins id="aswift_4_expand" style="border: none; height: 280px; width: 678px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-table;"><ins id="aswift_4_anchor" style="border: none; height: 280px; width: 678px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: block;"></ins></ins></ins></div><div class="mh-author-box mh-clearfix">
+	<figure class="mh-author-box-avatar">
+		<img alt="" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/65f931d305f4b013681f0b86041c4eb2.png" srcset="http://0.gravatar.com/avatar/65f931d305f4b013681f0b86041c4eb2?s=180&amp;d=wavatar&amp;r=g 2x" class="avatar avatar-90 photo" height="90" width="90">	</figure>
+	<div class="mh-author-box-header">
+		<span class="mh-author-box-name">
+			Giới thiệu Đào Nguyện		</span>
+					<span class="mh-author-box-postcount">
+				<a href="http://iot47.com/author/daonguyen/" title="Thêm nhiều bài được viết bởi Đào Nguyện&#39;">
+					71 bài viết				</a>
+			</span>
+			</div>
+			<div class="mh-author-box-bio">
+			DIY,chế cháo, viết blog chia sẽ kiến thức về lập trình,điện tử - IoT.
+Rất mong được giao lưu,  kết bạn với các bạn cùng đam mê. 
+Địa chỉ Facebook: https://www.facebook.com/nguyendao207		</div>
+	</div>		<div id="mh-comments" class="mh-comments-wrap">
+			<h4 class="mh-widget-title">
+				<span class="mh-widget-title-inner">
+					5 bình luận				</span>
+			</h4>
+			<ol class="commentlist mh-comment-list">
+						<li id="comment-199" class="comment even thread-even depth-1 mh-comment-item">
+			<article id="div-comment-199" class="mh-comment-body">
+				<footer class="mh-comment-footer mh-clearfix">
+					<figure class="mh-comment-gravatar">
+						<img alt="" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/01dd42ad4e0818438af3ccefa937df2f.jpeg" srcset="http://0.gravatar.com/avatar/01dd42ad4e0818438af3ccefa937df2f?s=160&amp;d=wavatar&amp;r=g 2x" class="avatar avatar-80 photo" height="80" width="80">					</figure>
+					<div class="mh-meta mh-comment-meta">
+						<div class="vcard author mh-comment-meta-author">
+							<span class="fn">Khuê nguyễn</span>
+						</div>
+						<a class="mh-comment-meta-date" href="http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#comment-199">
+							16 Tháng Mười Hai, 2020 tại 8:12 chiều						</a>
+					</div>
+				</footer>
+								<div class="entry-content mh-comment-content">
+					<p>cái cài đặt thanh ghi nó ghi chỗ nào datasheet bạn nhỉ 😀</p>
+				</div>
+				<div class="mh-meta mh-comment-meta-links"><a rel="nofollow" class="comment-reply-link" href="http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#comment-199" data-commentid="199" data-postid="2417" data-belowelement="comment-199" data-respondelement="respond" aria-label="Phản hồi đến Khuê nguyễn">Trả lời</a>                </div>
+			</article></li><!-- #comment-## -->
+		<li id="comment-241" class="comment odd alt thread-odd thread-alt depth-1 mh-comment-item">
+			<article id="div-comment-241" class="mh-comment-body">
+				<footer class="mh-comment-footer mh-clearfix">
+					<figure class="mh-comment-gravatar">
+						<img alt="" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/382fa304e53068788a6fb65421e2f0cd.png" srcset="http://0.gravatar.com/avatar/382fa304e53068788a6fb65421e2f0cd?s=160&amp;d=wavatar&amp;r=g 2x" class="avatar avatar-80 photo" height="80" width="80">					</figure>
+					<div class="mh-meta mh-comment-meta">
+						<div class="vcard author mh-comment-meta-author">
+							<span class="fn">normapappasseofy25</span>
+						</div>
+						<a class="mh-comment-meta-date" href="http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#comment-241">
+							26 Tháng Hai, 2021 tại 9:20 sáng						</a>
+					</div>
+				</footer>
+								<div class="entry-content mh-comment-content">
+					<p>It is not surprising that online blackjack players are envious of slots players. Usually the juiciest bonuses are reserved for wagering on online slots. Omni Casino, which prides itself on listening to the players, is offering a Super Bonus Match Play for its blackjack aficionados. =&gt; 우리카지노 계열 대한민국 최고의 카지노사이트<br>
+▶ <a href="https://www.topseom.com/" title="우리카지노" rel="nofollow ugc">우리카지노</a> ◀</p>
+				</div>
+				<div class="mh-meta mh-comment-meta-links"><a rel="nofollow" class="comment-reply-link" href="http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#comment-241" data-commentid="241" data-postid="2417" data-belowelement="comment-241" data-respondelement="respond" aria-label="Phản hồi đến normapappasseofy25">Trả lời</a>                </div>
+			</article></li><!-- #comment-## -->
+		<li id="comment-255" class="comment even thread-even depth-1 mh-comment-item">
+			<article id="div-comment-255" class="mh-comment-body">
+				<footer class="mh-comment-footer mh-clearfix">
+					<figure class="mh-comment-gravatar">
+						<img alt="" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/saved_resource(3)" srcset="http://2.gravatar.com/avatar/?s=160&amp;d=wavatar&amp;r=g 2x" class="avatar avatar-80 photo avatar-default" height="80" width="80">					</figure>
+					<div class="mh-meta mh-comment-meta">
+						<div class="vcard author mh-comment-meta-author">
+							<span class="fn">Khách</span>
+						</div>
+						<a class="mh-comment-meta-date" href="http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#comment-255">
+							3 Tháng Năm, 2021 tại 2:04 chiều						</a>
+					</div>
+				</footer>
+								<div class="entry-content mh-comment-content">
+					<p>MFRC522_CS_EN;</p>
+				</div>
+				<div class="mh-meta mh-comment-meta-links"><a rel="nofollow" class="comment-reply-link" href="http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#comment-255" data-commentid="255" data-postid="2417" data-belowelement="comment-255" data-respondelement="respond" aria-label="Phản hồi đến ">Trả lời</a>                </div>
+			</article></li><!-- #comment-## -->
+		<li id="comment-256" class="comment odd alt thread-odd thread-alt depth-1 mh-comment-item">
+			<article id="div-comment-256" class="mh-comment-body">
+				<footer class="mh-comment-footer mh-clearfix">
+					<figure class="mh-comment-gravatar">
+						<img alt="" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/saved_resource(3)" srcset="http://2.gravatar.com/avatar/?s=160&amp;d=wavatar&amp;r=g 2x" class="avatar avatar-80 photo avatar-default" height="80" width="80">					</figure>
+					<div class="mh-meta mh-comment-meta">
+						<div class="vcard author mh-comment-meta-author">
+							<span class="fn">Khách</span>
+						</div>
+						<a class="mh-comment-meta-date" href="http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#comment-256">
+							3 Tháng Năm, 2021 tại 2:05 chiều						</a>
+					</div>
+				</footer>
+								<div class="entry-content mh-comment-content">
+					<p>MFRC522_CS_EN;<br>
+hàm này ở đâu bạn nhỉ</p>
+				</div>
+				<div class="mh-meta mh-comment-meta-links"><a rel="nofollow" class="comment-reply-link" href="http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#comment-256" data-commentid="256" data-postid="2417" data-belowelement="comment-256" data-respondelement="respond" aria-label="Phản hồi đến ">Trả lời</a>                </div>
+			</article><ul class="children">
+		<li id="comment-259" class="comment even depth-2 mh-comment-item">
+			<article id="div-comment-259" class="mh-comment-body">
+				<footer class="mh-comment-footer mh-clearfix">
+					<figure class="mh-comment-gravatar">
+						<img alt="" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/saved_resource(4)" srcset="http://1.gravatar.com/avatar/?s=160&amp;d=wavatar&amp;r=g 2x" class="avatar avatar-80 photo avatar-default" height="80" width="80">					</figure>
+					<div class="mh-meta mh-comment-meta">
+						<div class="vcard author mh-comment-meta-author">
+							<span class="fn">Khách</span>
+						</div>
+						<a class="mh-comment-meta-date" href="http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#comment-259">
+							6 Tháng Năm, 2021 tại 9:26 sáng						</a>
+					</div>
+				</footer>
+								<div class="entry-content mh-comment-content">
+					<p>MFRC522_CS_EN; Ham này kéo chân CS xuống thâp đó bạn.</p>
+				</div>
+				<div class="mh-meta mh-comment-meta-links"><a rel="nofollow" class="comment-reply-link" href="http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#comment-259" data-commentid="259" data-postid="2417" data-belowelement="comment-259" data-respondelement="respond" aria-label="Phản hồi đến ">Trả lời</a>                </div>
+			</article></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+			</ol>
+		</div>
+		<div id="respond" class="comment-respond">
+							<h3 id="reply-title" class="comment-reply-title">Để lại bình luận					<small><a rel="nofollow" id="cancel-comment-reply-link" href="http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/#respond" style="display:none;">Hủy</a></small>
+				</h3>
+						<form id="commentform" class="comment-form">
+				<iframe title="Comment Form" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/saved_resource(6).html" style="width: 100%; height: 58px; border: 0px;" name="jetpack_remote_comment" class="jetpack_remote_comment" id="jetpack_remote_comment" sandbox="allow-same-origin allow-top-navigation allow-scripts allow-forms allow-popups" scrolling="no"></iframe>
+									<!--[if !IE]><!-->
+					<script>
+						document.addEventListener('DOMContentLoaded', function () {
+							var commentForms = document.getElementsByClassName('jetpack_remote_comment');
+							for (var i = 0; i < commentForms.length; i++) {
+								commentForms[i].allowTransparency = false;
+								commentForms[i].scrolling = 'no';
+							}
+						});
+					</script>
+					<!--<![endif]-->
+							</form>
+		</div>
+
+		
+		<input type="hidden" name="comment_parent" id="comment_parent" value="">
+
+			</div>
+	<aside class="mh-widget-col-1 mh-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar" style="height: auto !important;"><div id="search-2" class="mh-widget widget_search"><form role="search" method="get" class="search-form" action="http://iot47.com/">
+				<label>
+					<span class="screen-reader-text">Tìm kiếm cho:</span>
+					<input type="search" class="search-field" placeholder="Tìm kiếm …" value="" name="s">
+				</label>
+				<input type="submit" class="search-submit" value="Tìm kiếm">
+			</form></div><div id="text-7" class="mh-widget widget_text"><h4 class="mh-widget-title"><span class="mh-widget-title-inner">Tư vấn – thiết kế dự án điện tử, lập trình nhúng</span></h4>			<div class="textwidget"><p><a href="https://qstech.vn/"><em><strong>QS Tech</strong></em></a> là công ty chuyên cung cấp giải pháp công nghệ, mô hình tự động hóa, dây chuyền sản xuất, hệ thông IOT, smart home … Với đội ngũ kĩ thuật viên chuyên sâu, nhiều kinh nghiệm sẽ giúp bạn hoàn thành mục tiêu với chi phí rẻ nhất, thời gian nhanh nhất với chất lượng tốt nhất<a href="https://qstech.vn/"><img class="alignnone wp-image-2549" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/qstech-300x222.png" alt="" width="345" height="255"></a></p>
+<p>&nbsp;</p>
+</div>
+		</div>		<div id="recent-posts-2" class="mh-widget widget_recent_entries">		<h4 class="mh-widget-title"><span class="mh-widget-title-inner">Bài viết mới</span></h4>		<ul>
+											<li>
+					<a href="http://iot47.com/lcd-va-gui-bai-4-tim-hieu-ve-gui/">[LCD và GUI] Bài 4: Tìm hiểu về GUI</a>
+									</li>
+											<li>
+					<a href="http://iot47.com/lcd-va-gui-bai-3-hien-thi-van-ban-va-tieng-viet/">[LCD và GUI] Bài 3: Hiển thị văn bản và tiếng Việt</a>
+									</li>
+											<li>
+					<a href="http://iot47.com/iot-bai-11-cap-nhat-thong-tin-wifi-tu-xa-cho-esp8266/">[IoT] Bài 11: Cập nhật thông tin wifi từ xa cho esp8266</a>
+									</li>
+											<li>
+					<a href="http://iot47.com/lcd-va-gui-bai-2-tim-hieu-man-hinh-lcd-tft-1-8-inch-st7735/">[LCD và GUI] Bài 2: Tìm hiểu màn hình LCD TFT 1.8 inch ST7735 ( phần 1)</a>
+									</li>
+											<li>
+					<a href="http://iot47.com/bit-band-tren-stm32/">Bit Band trên STM32</a>
+									</li>
+											<li>
+					<a href="http://iot47.com/iot-bai-10-cap-nhat-chuong-trinh-cho-esp8266-tu-xa-qua-internet-fota/">[IoT] Bài 10: Cập nhật chương trình cho esp8266 từ xa qua internet (FOTA)</a>
+									</li>
+											<li>
+					<a href="http://iot47.com/bai-0-lam-quen-va-cai-dat-proteus-va-keilc-4-0-de-lap-trinh-cho-cac-dong-chip-8051/">Bài 0: Làm quen và cài đặt proteus và KeilC 4.0 để lập trình cho các dòng chip 8051</a>
+									</li>
+											<li>
+					<a href="http://iot47.com/giao-tiep-usb-hid-tren-stm32-voi-c-window-form/">Giao tiếp USB HID trên stm32 với c# window form</a>
+									</li>
+											<li>
+					<a href="http://iot47.com/nhung-va-phat-am-thanh-tren-stm32-voi-dma-va-pwm/">Nhúng và phát âm thanh trên STM32 với DMA và PWM</a>
+									</li>
+											<li>
+					<a href="http://iot47.com/giao-tiep-voi-module-the-tu-rfid-rc522/" aria-current="page">Giao tiếp với module thẻ từ RFID RC522</a>
+									</li>
+					</ul>
+		</div><div class="google-auto-placed" style="width: 100%; height: auto; clear: none; text-align: center;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-9493462897830284" data-adsbygoogle-status="done" style="display: block; margin: 10px auto 25px; background-color: transparent; height: 250px;" data-ad-status="filled"><ins id="aswift_1_expand" tabindex="0" title="Advertisement" aria-label="Advertisement" style="border: none; height: 250px; width: 326px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-table;"><ins id="aswift_1_anchor" style="border: none; height: 250px; width: 326px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: block; overflow: visible;"><iframe id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;border:0;width:326px;height:250px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="326" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/ads.html" data-google-container-id="a!2" data-google-query-id="CILwweP-gPUCFdFAnQkdOgEF_g" data-load-complete="true"></iframe></ins></ins></ins></div><div id="categories-2" class="mh-widget widget_categories"><h4 class="mh-widget-title"><span class="mh-widget-title-inner">Chuyên mục</span></h4>		<ul>
+				<li class="cat-item cat-item-44"><a href="http://iot47.com/category/vi-dieu-khien/8051/" title="Tìm hiểu về vi điều khiển 8051">8051</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://iot47.com/category/khong-phan-loai/">Chưa được phân loại</a>
+</li>
+	<li class="cat-item cat-item-34"><a href="http://iot47.com/category/iot-tutorial/ethernetgiao-tiep-enc28j60/" title="Tổng hợp các bài viết về mạng Ethernet, giao tiếp module enc28j60">Ethernet</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://iot47.com/category/iot-tutorial/" title="Các bài viết hướng dẫn về IoT - arduino, esp8266">IoT tutorial</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://iot47.com/category/lap-trinh-nhung/" title="Lập trình vi điều khiển - nhúng, giao tiếp với các module, cảm biến, các loại vi điều khiển - MCU">Lập trình nhúng</a>
+</li>
+	<li class="cat-item cat-item-42"><a href="http://iot47.com/category/lcd-va-gui/" title="Tất tật mọi thứ về màn hình LCD từ A-X
+GLCD tutorial
+Graphic LCD
+GUI
+Giao diện đồ họa người dùng trong lập trình nhúng
+Graphical User Interface">LCD và GUI</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://iot47.com/category/ma-tran-led/" title="Các bài viết về lập trình - giao tiếp với led ma trận - lập trình led ma trận - lập trình led ma trận full color">Ma trận LED</a>
+</li>
+	<li class="cat-item cat-item-27"><a href="http://iot47.com/category/san-pham/">Sản phẩm</a>
+</li>
+	<li class="cat-item cat-item-43"><a href="http://iot47.com/category/vi-dieu-khien/" title="Tổng hợp các bài viết để làm quen với các dòng vi điều khiển">Vi điều khiển</a>
+</li>
+	<li class="cat-item cat-item-35"><a href="http://iot47.com/category/iot-tutorial/giao-tiep-esp8266/" title="Tổng hợp các bài viết hướng dẫn về wifi-esp8266, giao tiếp với esp8266, giao thức mqtt esp8266">WIFI-ESP8266</a>
+</li>
+		</ul>
+			</div><div class="google-auto-placed" style="width: 100%; height: auto; clear: none; text-align: center;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-9493462897830284" data-adsbygoogle-status="done" style="display: block; margin: 10px auto 25px; background-color: transparent; height: 250px;" data-ad-status="filled"><ins id="aswift_2_expand" tabindex="0" title="Advertisement" aria-label="Advertisement" style="border: none; height: 250px; width: 326px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-table;"><ins id="aswift_2_anchor" style="border: none; height: 250px; width: 326px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: block; overflow: visible;"><iframe id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;border:0;width:326px;height:250px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="326" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/ads(1).html" data-google-container-id="a!3" data-google-query-id="CKGwwuP-gPUCFRMfjwodN2MHEw" data-load-complete="true"></iframe></ins></ins></ins></div><div id="recent-comments-4" class="mh-widget widget_recent_comments"><h4 class="mh-widget-title"><span class="mh-widget-title-inner">Phản hồi gần đây</span></h4><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">Khách</span> trong <a href="http://iot47.com/lap-trinh-led-day-ucs1903-voi-stm32f103c8t6/#comment-305">Lập trình LED dây UCS1903 với stm32f103c8t6</a></li><li class="recentcomments"><span class="comment-author-link"><a href="http://iot47.com/" rel="external nofollow ugc" class="url">Đào Nguyện</a></span> trong <a href="http://iot47.com/giao-tiep-usb-hid-tren-stm32-voi-c-window-form/#comment-304">Giao tiếp USB HID trên stm32 với c# window form</a></li><li class="recentcomments"><span class="comment-author-link"><a href="http://iot47.com/" rel="external nofollow ugc" class="url">Đào Nguyện</a></span> trong <a href="http://iot47.com/giao-tiep-usb-hid-tren-stm32-voi-c-window-form/#comment-303">Giao tiếp USB HID trên stm32 với c# window form</a></li><li class="recentcomments"><span class="comment-author-link">Khách</span> trong <a href="http://iot47.com/matrix-led-bai-4-hieu-ung-chu-chay-tren-led-ma-tran-8x32/#comment-302">[Matrix LED] Bài 4: Hiển thị chữ trên led ma trận 8×32</a></li><li class="recentcomments"><span class="comment-author-link"><a href="https://iotforagriculture.000webhostapp.com/kiemtra.php" rel="external nofollow ugc" class="url">hải</a></span> trong <a href="http://iot47.com/iot-bai-3-esp8266-demo-ung-dung-dieu-khien-led-tu-xa-qua-internet-bang-tap-lenh-at/#comment-301">[IoT] Bài 3: ESP8266 Demo ứng dụng điều khiển LED từ xa qua internet bằng tập lệnh AT esp8266</a></li><li class="recentcomments"><span class="comment-author-link">Khách</span> trong <a href="http://iot47.com/lap-trinh-led-day-ucs1903-voi-stm32f103c8t6/#comment-300">Lập trình LED dây UCS1903 với stm32f103c8t6</a></li><li class="recentcomments"><span class="comment-author-link"><a href="http://gravatar.com/phanvanhoainam22" rel="external nofollow ugc" class="url">Nam Phan</a></span> trong <a href="http://iot47.com/matrix-led-bai-3-led-ma-tran-8x8-dem-tu-0-den-9/#comment-299">[Matrix LED] Bài 3: Led ma trận 8×8 đếm từ 0 đến 9</a></li><li class="recentcomments"><span class="comment-author-link">Khách</span> trong <a href="http://iot47.com/matrix-led-bai-4-hieu-ung-chu-chay-tren-led-ma-tran-8x32/#comment-298">[Matrix LED] Bài 4: Hiển thị chữ trên led ma trận 8×32</a></li><li class="recentcomments"><span class="comment-author-link">Khách</span> trong <a href="http://iot47.com/matrix-led-bai-6-dong-ho-matrix-8x40-hieu-ung-lat-trang-don-gian/#comment-297">[Matrix LED] Bài 6: Đồng hồ matrix 8×40 hiệu ứng lật trang đơn giản</a></li><li class="recentcomments"><span class="comment-author-link">Khách</span> trong <a href="http://iot47.com/lap-trinh-led-matrix-8x8/#comment-296">[Matrix LED] Bài 2: Điều khiển lập trình led matrix 8×8 hiển thị kí tự</a></li></ul></div><div class="google-auto-placed" style="width: 100%; height: auto; clear: both; text-align: center;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-9493462897830284" data-adsbygoogle-status="done" style="display: block; margin: 10px auto 25px; background-color: transparent; height: 250px;" data-ad-status="filled"><ins id="aswift_3_expand" tabindex="0" title="Advertisement" aria-label="Advertisement" style="border: none; height: 250px; width: 326px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-table;"><ins id="aswift_3_anchor" style="border: none; height: 250px; width: 326px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: block; overflow: visible;"><iframe id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;border:0;width:326px;height:250px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="326" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/ads(2).html" data-google-container-id="a!4" data-google-query-id="CKG7wuP-gPUCFVKJjwodJRoB-A" data-load-complete="true"></iframe></ins></ins></ins></div></aside></div>
+<footer class="mh-footer" itemscope="itemscope" itemtype="http://schema.org/WPFooter">
+<div class="mh-container mh-container-inner mh-footer-widgets mh-row mh-clearfix">
+<div class="mh-col-1-4 mh-widget-col-1 mh-footer-4-cols  mh-footer-area mh-footer-1">
+<div id="text-3" class="mh-footer-widget widget_text"><h6 class="mh-widget-title mh-footer-widget-title"><span class="mh-widget-title-inner mh-footer-widget-title-inner">IOT47 BLOG</span></h6>			<div class="textwidget"><p>Blog chuyên chia sẽ kiến thức về IoT, lập trình nhúng, được lập vào tháng 8/2019 bởi <a href="https://www.facebook.com/nguyendao207">Đào Nguyện</a></p>
+</div>
+		</div></div>
+<div class="mh-col-1-4 mh-widget-col-1 mh-footer-4-cols  mh-footer-area mh-footer-2">
+<div id="text-4" class="mh-footer-widget widget_text"><h6 class="mh-widget-title mh-footer-widget-title"><span class="mh-widget-title-inner mh-footer-widget-title-inner">Liên hệ – Hỗ trợ</span></h6>			<div class="textwidget"><p>✉&nbsp; daonguyen20798@gmail.com<br>
+☎&nbsp; 0394733311<br>
+F&nbsp; &nbsp; <a href="http://fb.com/nguyendao207">fb.com/nguyendao207</a></p>
+</div>
+		</div></div>
+<div class="mh-col-1-4 mh-widget-col-1 mh-footer-4-cols  mh-footer-area mh-footer-3">
+<div id="text-5" class="mh-footer-widget widget_text"><h6 class="mh-widget-title mh-footer-widget-title"><span class="mh-widget-title-inner mh-footer-widget-title-inner">Liên kết</span></h6>			<div class="textwidget"><p>▶ <a href="https://www.youtube.com/gocdiy">Kênh DIY, làm mạch điện tử</a><br>
+▶ <a href="https://www.youtube.com/channel/UCPbmzci2fSNabWk-qRNpeiQ?view_as=subscriber">Kênh tổng hợp video từ blog</a><br>
+▶ <a href="https://qstech.vn/">https://qstech.vn/</a></p>
+</div>
+		</div></div>
+<div class="mh-col-1-4 mh-widget-col-1 mh-footer-4-cols  mh-footer-area mh-footer-4">
+<div id="text-6" class="mh-footer-widget widget_text"><h6 class="mh-widget-title mh-footer-widget-title"><span class="mh-widget-title-inner mh-footer-widget-title-inner">Ủng hộ</span></h6>			<div class="textwidget"><p>Nếu thấy cái bài viết hữu ích, các bạn có thể ủng hộ 💰cho mình tại tài khoản:<br>
+VIETCOMBANK CHƯƠNG DƯƠNG<br>
+STK: 0541000289275<br>
+DAO VAN NGUYEN</p>
+</div>
+		</div></div>
+</div>
+</footer>
+<div class="mh-copyright-wrap">
+	<div class="mh-container mh-container-inner mh-clearfix">
+		<p class="mh-copyright">Copyright © 2019 | Website thiết kế bởi <a href="https://www.facebook.com/nguyendao207" target="_blank" title="Truy cập trang cá nhân"><u>Đào Nguyện</u></a> | Theme MH Magazine Lite</p>
+	</div>
+</div>
+</div><!-- .mh-container-outer -->
+<link rel="stylesheet" id="crayon-css" href="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/crayon.min.css" type="text/css" media="all">
+<script type="text/javascript" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/comment-reply.min.js.tải xuống"></script>
+<script type="text/javascript" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/wp-embed.min.js.tải xuống"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"http:\/\/iot47.com\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/crayon.min.js.tải xuống"></script>
+<!-- Like & Share Button: http://peadig.com/wordpress-plugins/facebook-like-share-button/ -->
+<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=&version=v2.3";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+		<!--[if IE]>
+		<script type="text/javascript">
+			if ( 0 === window.location.hash.indexOf( '#comment-' ) ) {
+				// window.location.reload() doesn't respect the Hash in IE
+				window.location.hash = window.location.hash;
+			}
+		</script>
+		<![endif]-->
+		<script type="text/javascript">
+			(function () {
+				var comm_par_el = document.getElementById( 'comment_parent' ),
+					comm_par = ( comm_par_el && comm_par_el.value ) ? comm_par_el.value : '',
+					frame = document.getElementById( 'jetpack_remote_comment' ),
+					tellFrameNewParent;
+
+				tellFrameNewParent = function () {
+					if ( comm_par ) {
+						frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=174083503&postid=2417&comment_registration=0&require_name_email=0&stc_enabled=0&stb_enabled=0&show_avatars=1&avatar_default=wavatar&greeting=%C4%90%E1%BB%83+l%E1%BA%A1i+b%C3%ACnh+lu%E1%BA%ADn&greeting_reply=Tr%E1%BA%A3+l%E1%BB%9Di+ph%E1%BA%A3n+h%E1%BB%93i+cho+%25s&color_scheme=light&lang=vi&jetpack_version=8.3&show_cookie_consent=10&has_cookie_consent=0&token_key=%3Bnormal%3B&sig=8d4593eb9fa1dc70148039ed2123e6a74c3514da#parent=http%3A%2F%2Fiot47.com%2Fgiao-tiep-voi-module-the-tu-rfid-rc522%2F" + '&replytocom=' + parseInt( comm_par, 10 ).toString();
+					} else {
+						frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=174083503&postid=2417&comment_registration=0&require_name_email=0&stc_enabled=0&stb_enabled=0&show_avatars=1&avatar_default=wavatar&greeting=%C4%90%E1%BB%83+l%E1%BA%A1i+b%C3%ACnh+lu%E1%BA%ADn&greeting_reply=Tr%E1%BA%A3+l%E1%BB%9Di+ph%E1%BA%A3n+h%E1%BB%93i+cho+%25s&color_scheme=light&lang=vi&jetpack_version=8.3&show_cookie_consent=10&has_cookie_consent=0&token_key=%3Bnormal%3B&sig=8d4593eb9fa1dc70148039ed2123e6a74c3514da#parent=http%3A%2F%2Fiot47.com%2Fgiao-tiep-voi-module-the-tu-rfid-rc522%2F";
+					}
+				};
+
+				
+				if ( 'undefined' !== typeof addComment ) {
+					addComment._Jetpack_moveForm = addComment.moveForm;
+
+					addComment.moveForm = function ( commId, parentId, respondId, postId ) {
+						var returnValue = addComment._Jetpack_moveForm( commId, parentId, respondId, postId ),
+							cancelClick, cancel;
+
+						if ( false === returnValue ) {
+							cancel = document.getElementById( 'cancel-comment-reply-link' );
+							cancelClick = cancel.onclick;
+							cancel.onclick = function () {
+								var cancelReturn = cancelClick.call( this );
+								if ( false !== cancelReturn ) {
+									return cancelReturn;
+								}
+
+								if ( ! comm_par ) {
+									return cancelReturn;
+								}
+
+								comm_par = 0;
+
+								tellFrameNewParent();
+
+								return cancelReturn;
+							};
+						}
+
+						if ( comm_par == parentId ) {
+							return returnValue;
+						}
+
+						comm_par = parentId;
+
+						tellFrameNewParent();
+
+						return returnValue;
+					};
+				}
+
+				
+				// Do the post message bit after the dom has loaded.
+				document.addEventListener( 'DOMContentLoaded', function () {
+					var iframe_url = "https:\/\/jetpack.wordpress.com";
+					if ( window.postMessage ) {
+						if ( document.addEventListener ) {
+							window.addEventListener( 'message', function ( event ) {
+								var origin = event.origin.replace( /^http:\/\//i, 'https://' );
+								if ( iframe_url.replace( /^http:\/\//i, 'https://' ) !== origin ) {
+									return;
+								}
+								jQuery( frame ).height( event.data );
+							});
+						} else if ( document.attachEvent ) {
+							window.attachEvent( 'message', function ( event ) {
+								var origin = event.origin.replace( /^http:\/\//i, 'https://' );
+								if ( iframe_url.replace( /^http:\/\//i, 'https://' ) !== origin ) {
+									return;
+								}
+								jQuery( frame ).height( event.data );
+							});
+						}
+					}
+				})
+
+			})();
+		</script>
+
+		
+<ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;" data-ad-status="unfilled"><ins id="aswift_0_expand" tabindex="0" title="Advertisement" aria-label="Advertisement" style="border: none; height: 0px; width: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-table;"><ins id="aswift_0_anchor" style="border: none; height: 0px; width: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: block;"><iframe id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/ads(3).html" data-google-container-id="a!1" data-load-complete="true"></iframe></ins></ins></ins><ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" data-anchor-status="dismissed" style="display: none; width: 100% !important; height: 95px !important; bottom: -90px; clear: none !important; float: none !important; left: 0px; margin: 0px !important; max-height: none !important; max-width: none !important; opacity: 1; overflow: visible !important; padding: 0px !important; position: fixed; right: auto !important; top: auto !important; vertical-align: baseline !important; visibility: visible !important; z-index: 2147483647; background: rgb(250, 250, 250) !important;" data-ad-status="filled" data-anchor-shown="true"><ins class="ee" style="inset: auto !important; clear: none !important; display: block !important; float: none !important; height: 5px !important; margin: 0px !important; max-height: none !important; max-width: none !important; opacity: 1 !important; overflow: visible !important; padding: 0px !important; position: relative !important; vertical-align: baseline !important; visibility: visible !important; width: auto !important; z-index: 1 !important; background-color: rgb(250, 250, 250) !important; box-shadow: rgba(0, 0, 0, 0.2) 0px -1px 5px -1px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px !important;"><span style="display: block !important; width: 80px !important; height: 45px !important; bottom: 0px !important; left: 0% !important; pointer-events: none !important;"><svg style="margin: 0px !important; position: absolute !important; bottom: 0px !important; left: 0% !important; display: block !important; width: 80px !important; height: 30px !important; transform: none !important; pointer-events: initial !important;"><defs><filter id="dropShadowTop" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><fecomponenttransfer in="SourceAlpha" result="TransferredAlpha"><fefuncr type="discrete" tableValues="0.5"></fefuncr><fefuncg type="discrete" tableValues="0.5"></fefuncg><fefuncb type="discrete" tableValues="0.5"></fefuncb></fecomponenttransfer><fegaussianblur in="TransferredAlpha" stdDeviation="2"></fegaussianblur><feoffset dx="0" dy="0" result="offsetblur"></feoffset><femerge><femergenode></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter></defs><path d="M0,26 L0,6 A6,6 0 0,1 6,1 L50,1 A6,6 0 0,1 56,6 L56,20 A6,6 0 0,0 62,26 Z" stroke="#FAFAFA" stroke-width="1" fill="#FAFAFA" style="filter: url(&quot;#dropShadowTop&quot;);"></path><rect x="0" y="25" width="80" height="5" style="fill: rgb(250, 250, 250);"></rect><g class="down" stroke="#616161" stroke-width="2px" stroke-linecap="square"><line x1="22" y1="18" x2="28" y2="12"></line><line x1="28" y1="12" x2="34" y2="18"></line></g></svg></span></ins><ins id="aswift_6_expand" tabindex="0" title="Advertisement" aria-label="Advertisement" style="border: none !important; height: 90px !important; width: 100% !important; margin: 0px !important; padding: 0px !important; position: relative !important; visibility: visible !important; background-color: transparent !important; display: inline-table !important; inset: auto !important; clear: none !important; float: none !important; max-height: none !important; max-width: none !important; opacity: 1 !important; overflow: visible !important; vertical-align: baseline !important; z-index: auto !important;"><ins id="aswift_6_anchor" style="border: none !important; height: 90px !important; width: 100% !important; margin: 0px !important; padding: 0px !important; position: relative !important; visibility: visible !important; background-color: transparent !important; display: block !important; inset: auto !important; clear: none !important; float: none !important; max-height: none !important; max-width: none !important; opacity: 1 !important; overflow: visible !important; vertical-align: baseline !important; z-index: auto !important;"><iframe id="aswift_6" name="" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="1005" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/zrt_lookup.html" data-google-container-id="a!7" data-google-query-id="CLfZhuP-gPUCFVBJjwodXiAC-w" data-load-complete="true" style="display: block; margin: 0px auto;"></iframe></ins></ins></ins><iframe src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/aframe.html" width="0" height="0" style="display: none;"></iframe></body><iframe id="google_esf" name="google_esf" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/zrt_lookup(1).html" style="display: none;"></iframe><ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important; width: 100vw !important; height: 100vh !important; inset: 0px auto auto 0px !important; clear: none !important; float: none !important; margin: 0px !important; max-height: none !important; max-width: none !important; opacity: 1 !important; overflow: visible !important; padding: 0px !important; position: fixed !important; vertical-align: baseline !important; visibility: visible !important; z-index: 2147483647 !important; background: transparent !important;" aria-hidden="true" data-ad-status="filled" data-vignette-loaded="true"><ins id="aswift_5_expand" tabindex="0" title="Advertisement" aria-label="Advertisement" style="border: none !important; height: 100vh !important; width: 100vw !important; margin: 0px !important; padding: 0px !important; position: relative !important; visibility: visible !important; background-color: transparent !important; display: inline-table !important; inset: auto !important; clear: none !important; float: none !important; max-height: none !important; max-width: none !important; opacity: 1 !important; overflow: visible !important; vertical-align: baseline !important; z-index: auto !important;"><ins id="aswift_5_anchor" style="border: none !important; height: 100vh !important; width: 100vw !important; margin: 0px !important; padding: 0px !important; position: relative !important; visibility: visible !important; background-color: transparent !important; display: block !important; inset: auto !important; clear: none !important; float: none !important; max-height: none !important; max-width: none !important; opacity: 1 !important; overflow: visible !important; vertical-align: baseline !important; z-index: auto !important;"><iframe id="aswift_5" name="" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="" height="" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" src="./Giao tiếp với module thẻ từ RFID RC522 - Tự học IoT, Lập trình nhúng_files/zrt_lookup(2).html" data-google-container-id="a!6" data-google-query-id="CLbZhuP-gPUCFVBJjwodXiAC-w" data-load-complete="true" style="width: 100vw !important; height: 100vh !important; inset: 0px auto auto 0px !important; position: absolute !important; clear: none !important; display: inline !important; float: none !important; margin: 0px !important; max-height: none !important; max-width: none !important; opacity: 1 !important; overflow: visible !important; padding: 0px !important; vertical-align: baseline !important; visibility: visible !important; z-index: auto !important;"></iframe></ins></ins></ins></html>

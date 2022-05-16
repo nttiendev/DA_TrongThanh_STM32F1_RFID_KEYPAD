@@ -1,0 +1,30 @@
+rfid\dwt_delay.o: ..\util\DWT_Delay.c
+rfid\dwt_delay.o: ..\util\DWT_Delay.h
+rfid\dwt_delay.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
+rfid\dwt_delay.o: ../Core/Inc/stm32f1xx_hal_conf.h
+rfid\dwt_delay.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h
+rfid\dwt_delay.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h
+rfid\dwt_delay.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h
+rfid\dwt_delay.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h
+rfid\dwt_delay.o: ../Drivers/CMSIS/Include/core_cm3.h
+rfid\dwt_delay.o: C:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+rfid\dwt_delay.o: ../Drivers/CMSIS/Include/cmsis_version.h
+rfid\dwt_delay.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
+rfid\dwt_delay.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
+rfid\dwt_delay.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h
+rfid\dwt_delay.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
+rfid\dwt_delay.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
+rfid\dwt_delay.o: C:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+rfid\dwt_delay.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h
+rfid\dwt_delay.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h
+rfid\dwt_delay.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h
+rfid\dwt_delay.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h
+rfid\dwt_delay.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h
+rfid\dwt_delay.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h
+rfid\dwt_delay.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h
+rfid\dwt_delay.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
+rfid\dwt_delay.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
+rfid\dwt_delay.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+rfid\dwt_delay.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h
+rfid\dwt_delay.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
+rfid\dwt_delay.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h

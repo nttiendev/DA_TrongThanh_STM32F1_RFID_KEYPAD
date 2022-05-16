@@ -1,0 +1,574 @@
+ttHOrdering = {
+    autocomplete_customer : function(id){
+            if ($("#" + id).length > 0) {
+                var availableTags = [];
+                $.each(data_title_customer, function (i, val) {
+                    availableTags.push({'value':i, 'label':val});
+                });
+                $("#" + id).autocomplete({
+                    minLength: 2,
+                    source: function(request, response) {
+                        var results = $.ui.autocomplete.filter(availableTags, request.term);
+                        response(results.slice(0, 50));
+                    },
+                    open: function (event, ui) {
+                        var resultsList = $("ul.ui-autocomplete > li.ui-menu-item > a");
+                        var srchTerm = $.trim($("#" + id).val()).split(/\s+/).join('|');
+                        resultsList.sort();
+                        resultsList.each(function () {
+                            var jThis = $(this);
+                            var regX = new RegExp('(' + srchTerm + ')', "ig");
+                            var oldTxt = jThis.text();
+                            jThis.html(oldTxt.replace(regX, '<b>$1</b>'));
+                        });
+                    },
+                    select: function (event, ui) {
+                        var id = ui.item.label;
+                        loading('show');
+                        $.ajax({
+                            type: "POST",
+                            url: ROOT + "ajax.php",
+                            data: {"m": "product", "f": "get_info_customer", "id": id}
+                        }).done(function (string) {
+                            loading('hide');
+                            var data = JSON.parse(string);
+                            if (data.ok == 1) {
+                                $( "input[name*='o_full_name']" ).val(data.full_name);
+                                $( "input[name*='o_email']" ).val(data.email);
+                                $( "input[name*='o_phone']" ).val(data.phone);
+                                $( "input[name*='o_address']" ).val(data.address);
+                                $('.select_location_province').html(data.html_province).trigger('chosen:updated');
+                                $('.select_location_district').html(data.html_district).trigger('chosen:updated');
+                                $('.select_location_ward').html(data.html_ward).trigger('chosen:updated');
+                                var radioshipping = $("input[name='shipping']:checked").val();
+                                if (radioshipping == 1){
+                                    ttHLocation.select_customer_change();
+                                }
+                            } else {
+
+                            }
+                        });
+                    }
+                })
+            //}
+        }
+    },
+    form_wcoin:function(form_id) {
+        $("#"+form_id).validate({
+            submitHandler: function() {
+                var form_mess = $('#'+form_id).find('.form_mess');
+                form_mess.stop(true,true).slideUp(200).html('');
+                var fData = $("#"+form_id).serializeArray();
+                $max_wcoin = $('#order-subtotal .price_format  span').attr("data-value");
+                if(!$max_wcoin) { return false; }
+                loading('show');
+                $.ajax({
+                    type: "POST",
+                    url: ROOT+"ajax.php",
+                    data: { "m" : "user", "f" : "use_wcoin", "data" : fData , "max_wcoin" : $max_wcoin}
+                }).done(function( string ) {
+                    loading('hide');
+                    var data = JSON.parse(string);
+                    if(data.ok == 1) {
+                        form_mess.html(ttHTemp.html_alert(data.mess,'success')).stop(true,true).slideDown(200);
+                        $('.use_wcoin').html(data.wcoin_use + ' (-'+ data.price_wcoin +')');
+                        $('.number_wcoin').text(data.user_wcoin);
+                        $('#order-total .price_format .number').attr("data-value", data.total_amount);
+                        $('#order-total .price_format .number').text(data.total_amount);
+                        $('.wcoin_expected b').text(data.wcoin_expected);
+                        auto_price_format();
+                        go_link(data.link);
+                    } else {
+                        form_mess.html(ttHTemp.html_alert(data.mess,'error')).stop(true,true).slideDown(200);
+                    }
+                });
+                return false;
+            },
+            rules: {
+                wcoin: {
+                    required: true,
+                    number: true,
+                    min: 0,
+                    max: parseInt($('.show_wcoin b.number_wcoin').text()),
+                    range: [0, parseInt($('.show_wcoin b.number_wcoin').text())]
+                }
+            },
+            messages: {
+                // wcoin: ''
+            }        
+        });
+    },
+    ordering_request:function(form_id) {
+        $.validator.setDefaults({ ignore: ":hidden:not(select)" })
+        $("#"+form_id).validate({
+            submitHandler: function() {
+                loading('show');
+
+                var form_mess = $('#'+form_id).find('.form_mess');
+                form_mess.stop(true,true).slideUp(200).html('');
+                var fData = $("#"+form_id).serializeArray();
+                loading('show');
+                formData = new FormData($("#"+form_id)[0]);
+                formData.append("f", "ordering_request_new");
+                formData.append("m", "product");
+                formData.append("lang_cur", lang);
+                $.ajax({
+                    type: 'POST',
+                    url: ROOT+"ajax.php",
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                }).done(function( string ) {
+                    loading('hide');
+                    var data = JSON.parse(string);
+                    var html = '';
+                    if(data.ok == 1) {
+                        $("#"+form_id)[0].reset();
+                        jAlert(data.mess, lang_js['aleft_title'], function(){ location.reload(); }, 'success');
+                    } else {
+                        jAlert(data.mess, lang_js['aleft_title'],' ', 'error');
+                    }
+                });
+            },
+            rules: {
+                //o_province:"required",
+                o_full_name: {
+                    required: true,
+                },
+                o_phone: {
+                    required: true,
+                },
+                o_province: {
+                    required: true,
+                },
+                o_district: {
+                    required: true,
+                },
+                o_ward: {
+                    required: true,
+                },
+                o_address: {
+                    required: true,
+                },
+                o_email: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                o_address:'',
+                o_full_name:'',
+                o_phone:'',
+                o_email:'',
+                // o_province:'',
+                // o_district:'',
+                // o_ward:'',
+
+            }
+        });
+    },
+    is_buynow : false,
+    is_detailnow : false,
+    add_cart: function (form) {
+        form = (form) ? form : 'form.form_add_cart';
+        if ($(form).length) {                
+            $(form).find('.btn_add_cart').click(function () {
+                ttHOrdering.is_buynow = false;
+            });
+            $(form).find('.btn_add_cart.buynow').click(function () {
+                ttHOrdering.is_buynow = true;
+            });
+            $(form).find('.btn_add_cart.detailnow').click(function () {
+                ttHOrdering.is_detailnow = true;
+            });
+            $(form).submit(function () {
+                var fData = $(this).serializeArray();
+                var form = $(this);
+                link_cart = $(form).attr('action');
+                link_go_cart = $(form).data('link_go_cart');
+                link_go_detail = $(form).attr('data-link-detail');
+                if (ttHOrdering.is_detailnow == true) {
+                    go_link(link_go_detail);
+                    return false;
+                }
+                loading('show');
+                $.ajax({
+                    type: "POST",
+                    url: ROOT+"ajax.php",
+                    data: { "m":"product", "f":"add_cart", "lang_cur" : lang, "data" : fData }
+                }).done(function(string){   
+                    var data = JSON.parse(string);         
+                    loading('hide');
+                    if(data.ok == 1) {
+                        if (ttHOrdering.is_buynow == true) {
+                            go_link(link_go_cart);
+                        } else {
+                            $("html, body").animate({
+                                scrollTop: 0
+                            }, 600);
+                            $('#header_cart .add-to-cart-success').show();
+                        }
+                        header_cart();
+                    } else {
+                        $(".info_version_data ul li label").addClass("not_selected");
+                        jAlert(data.mess, lang_js['aleft_title'],' ', 'error', '2000');
+                    }
+                });
+                return false;
+            });
+        };
+    },
+    cart_update_html: function (form_id) {
+        var total_cart = 0;
+        var cart_payment = 0;
+        var promotion_value_type = 0;
+        var promotion_value = 0;
+        var promotion_percent = 0;
+        var promotion_price = 0;
+        var wcoin_use = $('.use_wcoin .price_format .number').attr("data-value");
+        $('#' + form_id + ' .cart_row').each(function () {
+            var price_buy = parseInt($(this).find('.up_price_buy').attr('value'));
+            var quantity  = parseInt($(this).find('.quantity').val());
+            //console.log(quantity);
+            var total = price_buy * quantity;
+            total_cart += total;
+
+            //$(this).find('.up_total .number').text(accounting.formatNumber(total));
+            $(this).find('.up_total .number').data({value: total});
+        });
+        cart_payment = total_cart;
+        if (wcoin_use > 0){
+            cart_payment -= wcoin_use;
+        }
+
+        if ($('.cart_promotion', '#' + form_id).length) {
+            if (total_cart >= $('.cart_total', '#' + form_id).attr('min_cart_promotion')) {
+                promotion_value_type = $('.cart_promotion', '#' + form_id).data('value_type');
+                promotion_value = $('.cart_promotion', '#' + form_id).data('value');
+                total_cart = parseFloat(total_cart);
+                var tmp_percent = 0;
+                var tmp_price = 0;
+                if (promotion_value_type == 1) {
+                    tmp_percent = parseFloat(promotion_value);
+                    tmp_price = ((tmp_percent * total_cart) / 100).toFixed(0);
+                } else {
+                    tmp_price = parseFloat(promotion_value);
+                    tmp_percent = ((tmp_price * 100) / total_cart).toFixed(2);
+                }
+                if (tmp_percent > 0 && tmp_percent < 100) {
+                    promotion_percent = tmp_percent;
+                    promotion_price = tmp_price;
+                    cart_payment -= tmp_price;
+                }
+                $('#' + form_id).find('.cart_promotional .number').data({value: promotion_price});
+            } else {
+                $('#' + form_id).find('.cart_promotional .number').data({value: promotion_price});
+            }
+        }
+
+        if ($('.cart_voucher', '#' + form_id).length) {
+            cart_voucher = $('.cart_voucher', '#' + form_id).attr('value');
+            cart_voucher_out = cart_voucher;
+            if (cart_voucher > cart_payment) {
+                cart_voucher_out = cart_payment;
+                cart_payment = 0;
+            } else {
+                cart_payment -= cart_voucher;
+            }
+            $('#' + form_id).find('.cart_voucher .number').data({value: cart_voucher_out});
+        }
+        $('#' + form_id).find('.cart_total .number').data({value: total_cart});
+        if ($('.cart_payment', '#' + form_id).length) {
+            $('#' + form_id).find('.cart_payment .number').data({value: cart_payment});
+        }
+
+        auto_rate_exchange();
+        return false;
+    },
+    cart_update: function (form_id, link_go) {
+        loading('show');
+        var form_mess = $('#'+form_id).find('.form_mess');
+        form_mess.stop(true,true).slideUp(200).html('');
+        var fData = $("#"+form_id).serializeArray();
+        link_act = $("#"+form_id).attr('link-go');
+        loading('show');
+        $.ajax({
+            type: "POST",
+            url: ROOT + "ajax.php",
+            data: {"m": "product", "f": "cart_update", "data": fData}
+        }).done(function (string) {
+            loading('hide');
+            var data = JSON.parse(string);
+            if (data.ok == 1) {
+                if (data.mess_class == 'success') {
+                    header_cart();
+                    location.reload();
+                    if (link_go) {
+                        go_link(link_go);
+                    }
+                } else {
+                    jAlert(data.mess, lang_js['aleft_title'], function () { go_link(''); }, data.mess_class);
+                }
+            } else {
+                form_mess.html(ttHTemp.html_alert(data.mess, 'error')).stop(true, true).slideDown(200);
+            }
+        });
+        return false;
+    },
+    cart_del_item: function () {
+        $('#form_cart .col .delete_cart').click(function () {
+            var form_mess = $('#form_cart').find('.form_mess');
+            form_mess.stop(true, true).slideUp(200).html('');
+            var cart_item = $(this).attr('cart_item');
+            var type = $(this).data('type');
+            loading('show');
+            $.ajax({
+                type: "POST",
+                url: ROOT + "ajax.php",
+                data: {"m": "product", "f": "cart_del_item", "cart_item": cart_item, "type": type}
+            }).done(function (ok) {
+                loading('hide');
+                if (ok == 1) {
+                    $('#form_cart #cart_' + cart_item).remove();
+                    header_cart();
+                    ttHOrdering.cart_update_html('form_cart');
+                    location.reload();
+                } else {
+                    form_mess.html(ttHTemp.html_alert(lang_js['delete_false'], 'error')).stop(true, true).slideDown(200);
+                }
+            });
+        });
+        return false;
+    },
+    signup: function (form_id, link_go) {
+        $.validator.setDefaults({
+            submitHandler: function () {
+                var form_mess = $('#' + form_id).find('.form_mess');
+                form_mess.stop(true, true).slideUp(200).html('');
+                var fData = $("#" + form_id).serializeArray();
+
+                loading('show');
+
+                $.ajax({
+                    type: "POST",
+                    url: ROOT + "ajax.php",
+                    data: {"m": "user", "f": "signup", "data": fData}
+                }).done(function (string) {
+
+                    loading('hide');
+
+                    var data = JSON.parse(string);
+                    if (data.ok == 1) {
+                        //form_mess.html(ttHTemp.html_alert(data.mess,'success')).stop(true,true).slideDown(200);
+                        //alert(data.mess);
+                        //go_link(link_go);
+                        jAlert(data.mess, lang_js['aleft_title'], function () {
+                            go_link(link_go);
+                        }, 'success');
+                    } else {
+                        form_mess.html(ttHTemp.html_alert(data.mess, 'error')).stop(true, true).slideDown(200);
+                    }
+                });
+                //e.preventDefault(); //STOP default action
+                //e.unbind(); //unbind. to stop multiple form submit.
+                return false;
+            }
+        });
+        $("#" + form_id).validate({
+            rules: {
+                nickname: {
+                    required: true
+                },
+                username: {
+                    required: true,
+                    email: true
+                },
+                password: {
+                    required: true
+                },
+                re_password: {
+                    equalTo: '#' + form_id + ' #password'
+                },
+                /*phone: {
+                 required: true
+                 },*/
+                address: {
+                    required: true
+                },
+                captcha: {
+                    required: true
+                }
+            },
+            messages: {
+                nickname: lang_js['err_valid_input'],
+                username: {
+                    required: lang_js['err_valid_input'],
+                    email: lang_js['err_invalid_username']
+                },
+                password: lang_js['err_valid_input'],
+                re_password: lang_js['err_valid_input'],
+                //phone: lang_js['err_valid_input'],
+                address: lang_js['err_valid_input'],
+                captcha: lang_js['err_valid_input']
+            }
+        });
+    },
+    same_address: function () {
+
+
+        // $('#same_address').click(function () {
+        //     if ($(this).prop('checked') == true) {
+        //         chang_value_address();
+        //         chang_select_address();
+        //     } else {
+        //         reset_value_address();
+        //     }
+        // });
+        //
+        // $('.row_input', '.ordering_address_l').change(function (e) {
+        //     if ($('#same_address').prop('checked') == true) {
+        //         chang_value_address();
+        //         chang_select_address();
+        //     }
+        // });
+        // $('.row_input', '.ordering_address_l').keyup(function (e) {
+        //     if ($('#same_address').prop('checked') == true) {
+        //         chang_value_address();
+        //     }
+        // });
+        return false;
+    },
+    get_OnHand: function () {
+        $(document).on("change",  "#select_warehouse", function() {
+            var BranchId = $(this).val();
+            var ProductId = $(this).data('option');
+            $.ajax({
+                type: "POST",
+                url: ROOT + "ajax.php",
+                data: {"m": "product", "f": "get_OnHand", "ProductId": ProductId, "BranchId":BranchId}
+            }).done(function (string) {
+                $("#num_OnHand").html(string);
+            });
+        });
+        return false;
+    },
+};
+
+
+function chang_value_address(){
+    $("input[name=d_full_name]").val($("input[name=o_full_name]").val());
+    $("input[name=d_email]").val($(".ordering_address_l input[name=o_email]").val());
+    $("input[name=d_phone]").val($("input[name=o_phone]").val());
+    $("input[name=d_address]").val($("input[name=o_address]").val());
+}
+function reset_value_address(){
+    $("input[name=d_full_name]").val('');
+    $("input[name=d_email]").val('');
+    $("input[name=d_phone]").val('');
+    $("input[name=d_address]").val('');
+}
+function chang_select_address(){
+    $('.select_location_province_d').val($('.select_location_province').val()).trigger('chosen:updated');
+    ttHLocation.load_district_op_custom($('.select_location_province_d'), 'province', $('.select_location_province').val(), $('.select_location_district').val());
+}
+
+$(document).ready(function(){
+    $("#select_customer").change(function(){
+        var id = $(this).val();
+        loading('show');
+        $.ajax({
+            type: "POST",
+            url: ROOT + "ajax.php",
+            data: {"m": "product", "f": "get_info_customer", "id": id}
+        }).done(function (string) {
+            loading('hide');
+            var data = JSON.parse(string);
+            if (data.ok == 1) {
+                $( "input[name*='o_full_name']" ).val(data.full_name);
+                $( "input[name*='o_email']" ).val(data.email);
+                $( "input[name*='o_phone']" ).val(data.phone);
+                $( "input[name*='o_address']" ).val(data.address);
+                $('.select_location_province').html(data.html_province).trigger('chosen:updated');
+                $('.select_location_district').html(data.html_district).trigger('chosen:updated');
+                $('.select_location_ward').html(data.html_ward).trigger('chosen:updated');
+                //var a = $("input[name*='shipping']" ).val();
+                var radioshipping = $("input[name='shipping']:checked").val();
+                //console.log(radioValue);
+                if (radioshipping == 1){
+                    ttHLocation.select_customer_change();
+                }
+
+
+            } else {
+
+            }
+        });
+
+    });
+});
+
+
+$('.btn_complete').click(function () {
+    //event.preventDefault();
+    var o_full_name = $("#form_ordering_address input[name='o_full_name']").val();
+    var o_phone = $("#form_ordering_address input[name='o_phone']").val();
+    if (o_full_name == "") {
+        jAlert('Nhập họ và tên', lang_js['aleft_title'],' ', 'error', '2000');
+    }else if(o_phone == ""){
+        jAlert('Nhập số điện thoại', lang_js['aleft_title'],' ', 'error', '2000');
+    }else{
+        $.jAlert({
+            'title': lang_js['aleft_title'],
+            'size': 'sm',
+            'content':lang_js['keep_on_page'],
+            'animationTimeout': '10',
+            'theme': 'blue',
+            'closeOnClick': false,
+            'blurBackground': true,
+            'closeOnEsc': false,
+            'closeBtn': false,
+        });
+    }
+});
+
+function result_search(form_id) {
+    $("#"+form_id).validate({
+        submitHandler: function() {
+            var form_mess = $('#'+form_id).find('.form_mess');
+            form_mess.stop(true,true).slideUp(200).html('');
+            var fData = $("#"+form_id).serializeArray();
+
+            loading('show');
+            $.ajax({
+                type: "POST",
+                url: ROOT+"ajax.php",
+                data: { "m" : "product", "f" : "result_search", "data" : fData}
+            }).done(function( string ) {
+                loading('hide');
+                var data = JSON.parse(string);
+                if(data.ok == 1) {
+                    $('#modal_result_search').modal('hide');
+                    $.jAlert({
+                        'title': lang_js['aleft_title'],
+                        'size': 'sm',
+                        'content':data.mess,
+                        'animationTimeout': '10',
+                        'theme': 'blue',
+                    });
+                } else {
+                    $.jAlert({
+                        'title': lang_js['aleft_title'],
+                        'size': 'sm',
+                        'content':'Lỗi hệ thống vui lòng thử lại',
+                        'animationTimeout': '10',
+                        'theme': 'red',
+
+                    });
+                }
+            });
+            return false;
+        },
+
+    });
+}

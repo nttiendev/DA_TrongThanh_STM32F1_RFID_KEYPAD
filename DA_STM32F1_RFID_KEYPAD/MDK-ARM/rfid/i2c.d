@@ -1,0 +1,9 @@
+rfid\i2c.o: ..\Core\Src\i2c.c
+rfid\i2c.o: E:\keilc\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h
+rfid\i2c.o: .\RTE\_rfid\RTE_Components.h
+rfid\i2c.o: ../Drivers/CMSIS/Include/core_cm3.h
+rfid\i2c.o: E:\keilc\ARM\ARMCC\Bin\..\include\stdint.h
+rfid\i2c.o: ../Drivers/CMSIS/Include/cmsis_version.h
+rfid\i2c.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
+rfid\i2c.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
+rfid\i2c.o: E:\keilc\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h

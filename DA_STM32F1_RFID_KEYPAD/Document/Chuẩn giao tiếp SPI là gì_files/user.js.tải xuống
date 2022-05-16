@@ -1,0 +1,1530 @@
+ttHUser = {
+	sampleCircuitfeature:function(form_id) {
+		$("#"+form_id).validate({
+			submitHandler: function() {
+				var form_mess = $('#'+form_id).find('.form_mess');
+				form_mess.stop(true,true).slideUp(200).html('');
+				var fData = $("#"+form_id).serializeArray();
+				loading('show');
+                formData = new FormData($("#"+form_id)[0]);
+                formData.append("f", "sampleCircuitfeature");
+                formData.append("m", "user");
+                formData.append("lang_cur", lang);
+				$.ajax({
+                    type: 'POST',
+                    url: ROOT+"ajax.php",
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+				}).done(function( string ) {
+					loading('hide');
+					var data = JSON.parse(string);
+					var html = '';
+					if(data.ok == 1) {
+						$("#"+form_id)[0].reset();
+						jAlert(data.mess, lang_js['aleft_title'], function(){ location.reload(); }, 'success');
+					} else {
+						jAlert(data.mess, lang_js['aleft_title'],' ', 'error');
+					}
+				});
+				return false;
+			},
+			rules: {
+				email: {
+					required: true
+				},
+				full_name: {
+					required: true
+				},
+				phone: {
+					required: true
+				}
+			},
+			messages: {
+				email: lang_js['err_valid_input'],
+				full_name: lang_js['err_valid_input'],
+				phone: lang_js['err_valid_input'],
+			}			
+		});
+	},
+	form_request:function(form_id) {
+		$("#"+form_id).validate({
+			submitHandler: function() {
+				var form_mess = $('#'+form_id).find('.form_mess');
+				form_mess.stop(true,true).slideUp(200).html('');
+				var fData = $("#"+form_id).serializeArray();
+				loading('show');
+                formData = new FormData($("#"+form_id)[0]);
+                formData.append("f", "form_request");
+                formData.append("m", "user");
+                formData.append("lang_cur", lang);
+				$.ajax({
+                    type: 'POST',
+                    url: ROOT+"ajax.php",
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+				}).done(function( string ) {
+					loading('hide');
+					var data = JSON.parse(string);
+					var html = '';
+					if(data.ok == 1) {
+						$("#"+form_id)[0].reset();
+						form_mess.html(ttHTemp.html_alert(data.mess,'success')).stop(true,true).slideDown(200);
+					} else {
+						form_mess.html(ttHTemp.html_alert(data.mess,'error')).stop(true,true).slideDown(200);
+					}
+				});
+				return false;
+			},
+			rules: {
+				status_id: {
+					required: true
+				},
+				short: {
+					required: true,
+				},
+			},
+			messages: {
+				status_id: lang_js['err_valid_input'],
+				short: lang_js['err_valid_input'],
+			}			
+		});
+	},
+	post_advisory:function(form_id) {
+		$("."+form_id).validate({
+			submitHandler: function() {
+				var form_mess = $('.'+form_id).find('.form_mess');
+				form_mess.stop(true,true).slideUp(200).html('');
+				var fData = $("."+form_id).serializeArray();
+                link_act = $("."+form_id).attr('link-go');
+				loading('show');
+				$.ajax({
+					type: "POST",
+					url: ROOT+"ajax.php",
+					data: { "m" : "user", "f" : "post_advisory", "lang_cur" : lang, "data" : fData }
+				}).done(function( string ) {
+					loading('hide');
+					var data = JSON.parse(string);
+					console.log(data);
+					var html = '';
+					$('.captcha_refresh').click();
+					if(data.ok == 1) {
+						form_mess.html(ttHTemp.html_alert(data.mess,'success')).stop(true,true).slideDown(200);
+					} else {
+						form_mess.html(ttHTemp.html_alert(data.mess,'error')).stop(true,true).slideDown(200);
+					}
+				});
+				return false;
+			},
+			rules: {
+				txtaComment: {
+					required: true
+				},
+				txtName: {
+					required: true,
+				},
+				txtEmail: {
+					required: true,
+					email: true,
+				},
+				captcha: {
+					required: true,
+				}
+			},
+			messages: {
+				txtaComment: '',
+				txtName: lang_js['err_valid_input'],
+				txtEmail: {
+					required: lang_js['err_valid_input'],
+					email: lang_js['err_email_input']
+				},
+				captcha: ''
+			}			
+		});
+	},
+	load_comment:function(){
+		$(document).on('click', ".btn_loadmore", function (e) {
+			var item_id = $("input[name=item_id]").val();
+	    	var start = $(this).attr('data-start');
+			loading('show');
+	    	if(!start) { return false; }
+			$.ajax({
+	            type: "POST",
+	            url: ROOT+"ajax.php",
+	            data: { "m" : "user", "f" : "load_comment", "lang_cur" : lang, "item_id" : item_id,'start' : start }
+	        }).done(function( string ) {
+				loading('hide');
+				var html = '';
+	            var data = JSON.parse(string);
+	            $.each(data.data, function (key, obj){
+	       		html += ' <div class="media">' +
+			                '<div class="media-left">' +                   
+			                   '<img class="media-object" src="temp/blue/images/user.png" alt="...">' +               
+			                '</div>' +
+			                '<div class="media-body">' +              
+			                '<p><b class="name"><i> ' + obj.name + ' </i></b> - <i class="date small"> ' + obj.time +' </i></p>' +
+			                '<p class="comment">' + obj.content +'</p>' +                            
+			                    '<div class="rating-scores">' +                
+			                    '<i class="small">Đánh giá sản phẩm - </i>' +                  
+			                      '<span class="small-star">' 
+			                          + obj.text_rate +
+			                      '</span>' +              
+			                    '</div>' +             
+			                '</div>' +
+			            '</div>';
+	       		});
+				$('.div_more').before(html);
+				if(data.start == data.max || data.start > data.max){
+					$('.btn_loadmore').text('');
+					$('.btn_loadmore').removeAttr('data-start');
+					$('.btn_loadmore').removeAttr('data-max');
+					$('.btn_loadmore').removeClass('btn_loadmore');
+				}
+				else{
+					$('.btn_loadmore').attr("data-start", data.start);
+				}
+				$('.div_more .count_comment span').text(data.start);
+		    });
+	    });
+	},
+	post_comment:function(form_id) {
+		$("#"+form_id).validate({
+			submitHandler: function() {
+				var form_mess = $('#'+form_id).find('.form_mess');
+				form_mess.stop(true,true).slideUp(200).html('');
+				var fData = $("#"+form_id).serializeArray();
+                link_act = $("#"+form_id).attr('link-go');
+				loading('show');
+                txtaComment =  CKEDITOR.instances['txtaComment'].getData().replace(/<[^>]*>/gi, '');
+				$.ajax({
+					type: "POST",
+					url: ROOT+"ajax.php",
+					data: { "m" : "user", "f" : "post_comment", "lang_cur" : lang, "data" : fData,'txtaComment': txtaComment}
+				}).done(function( string ) {
+					loading('hide');
+					var data = JSON.parse(string);
+					var html = '';
+					$('.captcha_refresh').click();
+					if(data.ok == 1) {
+						// html += ' <div class="media">' +
+						//                 '<div class="media-left">' +
+						//                    '<img class="media-object" src="temp/blue/images/user.png" alt="...">' +
+						//                 '</div>' +
+						//                 '<div class="media-body">' +
+						//                 '<p><b class="name"><i> ' + data.name + ' </i></b> - <i class="date small"> ' + data.date_create +' </i></p>' +
+						//                 '<p class="comment">' + data.content +'</p>' +
+						//                     '<div class="rating-scores">' +
+						//                     '<i class="small">'+ lang_js['product_review'] +' - </i>' +
+						//                       '<span class="small-star">'
+						//                           + data.text_rate +
+						//                       '</span>' +
+						//                     '</div>' +
+						//                 '</div>' +
+						//             '</div>';
+						// $('.list_comment').prepend(html);
+						//form_mess.html(ttHTemp.html_alert(data.mess,'success')).stop(true,true).slideDown(200);
+                        $.jAlert({
+                            'title': lang_js['aleft_title'],
+                            //'size': 'xsm',
+                            'content':data.mess,
+                            'animationTimeout': '10',
+                            'theme': 'blue',
+                            'closeOnClick': true,
+                            'onClose': function(alertElem){
+                                location.reload();
+                            },
+                            'blurBackground': true,
+                        })
+
+					} else {
+						///form_mess.html(ttHTemp.html_alert(data.mess,'error')).stop(true,true).slideDown(200);
+                        $.jAlert({
+                            'title': lang_js['aleft_title'],
+                            //'size': 'xsm',
+                            'content':data.mess,
+                            'animationTimeout': '10',
+                            'theme': 'red',
+                            'closeOnClick': true,
+                            'blurBackground': true,
+                        });
+					}
+				});
+				return false;
+			},
+			rules: {
+				txtaComment: {
+					required: true
+				},
+				txtName: {
+					required: true,
+				},
+				txtEmail: {
+					required: true,
+					email: true,
+				},
+				captcha: {
+					required: true,
+				}
+			},
+			messages: {
+				txtaComment: '',
+				txtName: lang_js['err_valid_input'],
+				txtEmail: {
+					required: lang_js['err_valid_input'],
+					email: lang_js['err_email_input']
+				},
+				captcha: ''
+			}			
+		});
+	},
+	check_order:function (form_id) {
+		$("#"+form_id).validate({
+			submitHandler: function() {
+				var form_mess = $('#'+form_id).find('.form_mess');
+				form_mess.stop(true,true).slideUp(200).html('');
+				var fData = $("#"+form_id).serializeArray();
+                link_act = $("#"+form_id).attr('link-go');
+				loading('show');
+				$.ajax({
+					type: "POST",
+					url: ROOT+"ajax.php",
+					data: { "m" : "user", "f" : "get_order", "lang_cur" : lang, "data" : fData }
+				}).done(function( string ) {
+					loading('hide');
+					var data = JSON.parse(string);
+					if(data.ok == 1) {
+						var code = $('#'+form_id + " [name='order_code']").val();
+						go_link(link_act + '' + code + '.html');
+					}
+					else if(data.ok == 2) {
+						var code = $('#'+form_id + " [name='order_code']").val();
+						go_link(link_act + '?by_phone=' + code);
+					} else {
+						jAlert(data.mess, lang_js['aleft_title'],' ', 'error');
+					}
+				});
+				return false;
+			},
+			rules: {
+				order_code: {
+					required: true
+				},
+				o_email: {
+					required: true,
+				},
+				
+			},
+			messages: {
+				order_code: '',
+				o_email: '',
+			}			
+		});
+	},
+	form_notification:function (form_id) {
+		// notification_product 
+		var ajax_send = false;
+
+	    $( ".notification_product .button_no" ).click(function( event ) {
+	    	if (ajax_send == true){
+               return false;
+	        }
+	        ajax_send = true;
+	        var item_id = $("input[name=item_id]").val();
+	        var title = $("input[name=title]").val();
+	        var image = $("input[name=picture]").val();
+	        $.jAlert({ 
+	            'title': '',
+	            'content' : '<form id="form_notification" name="form_report" method="post" action="" novalidate="novalidate" >' +
+	                        '<div class="form_mess"></div>' +
+	                        '<div class="view_no_product">' +
+	                        '<div class="image"><img src="' + image + '"/></div>' +
+	                        '<div class="title">' + title + '</div>' +
+	                        '</div>' +
+	                        '<div class="send_no_product">' +
+	                            '<input name="name" type= "text" placeholder="' + lang_js['full_name'] + '">' +
+	                            '<input name="email" type= "text" placeholder="' + lang_js['enter_email'] + '">' +
+	                            '<textarea name="content" type= "text"></textarea>' +
+	                            '<input style="display: none" type="text" name="item_id" value="' + item_id + '"></textarea>' +
+	                            '<div class="bottom">' +
+	                                '<button type="submit" name="send" class="btn btn-primary btn-lg fr" style="width: 100%;">' + lang_js['register_now'] + '</button>' +
+	                                '<div class="clear"></div>' +
+	                            '</div>'+
+	                            '<div class="clear"></div>' +
+	                        '</div>' +
+	                        '<script language="javascript"> ajax_send = false; ttHUser.form_notification("form_notification");</script>' + 
+	                        '</form>',
+	            'size': 'md'
+	        });
+	    });
+		$("#"+form_id).validate({
+			submitHandler: function() {
+				var form_mess = $('#'+form_id).find('.form_mess');
+				form_mess.stop(true,true).slideUp(200).html('');
+				var fData = $("#"+form_id).serializeArray();
+				loading('show');
+				$.ajax({
+					type: "POST",
+					url: ROOT+"ajax.php",
+					data: { "m" : "user", "f" : "get_notification", "lang_cur" : lang, "data" : fData }
+				}).done(function( string ) {
+					loading('hide');
+					var data = JSON.parse(string);
+					if(data.ok == 1) {
+						form_mess.html(ttHTemp.html_alert(data.mess,'success')).stop(true,true).slideDown(200);
+					} else {
+						form_mess.html(ttHTemp.html_alert(data.mess,'error')).stop(true,true).slideDown(200);
+					}
+				});
+				return false;
+			},
+			rules: {
+				name: {
+					required: true
+				},
+				email: {
+					required: true,
+					email: true
+				},
+				content: {
+					required: true
+				},
+			},
+			messages: {
+				name: lang_js['err_valid_input'],
+				email: {
+					required: lang_js['err_valid_input'],
+					email: lang_js['err_email_input']
+				},
+				content: lang_js['err_valid_input'],
+			}			
+		});
+	},
+	show_signup:function (show, hide) {
+		$('#'+show).slideDown(200);
+		$('#'+hide).slideUp(200);
+	},
+	classified_upload:function (form_id) {
+		$.validator.setDefaults({ ignore: ":hidden:not(select)" })
+		$("#"+form_id).validate({
+
+			submitHandler: function() {
+				var kt = ValidateUpload();
+				if(kt === 0){
+					return false;
+				}
+				var form_mess = $('#form_mess');
+				form_mess.stop(true,true).slideUp(200).html('');
+				var fData = $("#"+form_id).serializeArray();
+				loading('show');
+
+				$.ajax({
+					type: "POST",
+					url: ROOT+"ajax.php",
+					data: { "m" : "user", "f" : "classified_upload", "lang_cur" : lang, "data" : fData }
+				}).done(function( string ) {
+
+					loading('hide');
+
+					var data = JSON.parse(string);
+					if(data.ok == 1) {
+						//$('#'+form_id).reset();
+						//location.reload();
+						//form_mess.html(ttHTemp.html_alert(data.mess,'success')).stop(true,true).slideDown(200);
+						//alert(data.mess);
+						//go_link(link_go);
+						// function(){go_link(link_go);}
+						//jAlert(data.mess, lang_js['aleft_title'],' ', 'success');
+
+						$.jAlert({
+							'title': lang_js['aleft_title'],
+							//'size': 'xsm',
+							'content':data.mess,
+							'animationTimeout': '10',
+							'theme': 'blue',
+							'closeOnClick': true,
+							'blurBackground': true,
+							'onClose': function(alertElem){
+								location.reload();
+							},
+						})
+					} else {
+						form_mess.html(ttHTemp.html_alert(data.mess,'error')).stop(true,true).slideDown(200);
+					}
+				});
+				//e.preventDefault(); //STOP default action
+				//e.unbind(); //unbind. to stop multiple form submit.
+				return false;
+
+			},
+			rules: {
+				// title: {
+				// 	required: true
+				// },
+				// group_id: {
+				// 	required: true,
+				// },
+				// short: {
+				// 	required: true
+				// },
+				// link_download: {
+				// 	required: true
+				// },
+				// re_password: {
+				// 	equalTo: '#'+form_id+' input[name*="password"]'
+				// },
+				/*re_password: {
+				 equalTo: '#'+form_id+' #header_password'
+				 },*/
+                phone_contact: {
+					required: true
+				},
+//				address: {
+//					required: true
+//				},
+				group_id: {
+					required: true,
+				},
+				content: {
+					required: true,
+				},
+				check_terms: {
+					required: true,
+				},
+				captcha: {
+					required: true,
+				},
+				///type_recieve:"required",
+			},
+			defaults: {
+
+			},
+			messages: {
+				check_terms: '',
+				nickname: '',
+				username: '',
+				password: '',
+				re_password: '',
+				//phone: lang_js['err_valid_input'],
+				//address: lang_js['err_valid_input'],
+				//captcha: lang_js['err_valid_input']
+			},
+			// errorPlacement: function (error, element) {
+			// 	console.log("placement");
+			// 	if (element.is("select.chosen-select")) {
+			// 		console.log("placement for chosen");
+			// 		// placement for chosen
+			// 		//element.next("div.chzn-container").append(error);
+			// 		alert('ađá');
+			// 	} else {
+			// 		// standard placement
+			// 		error.insertAfter(element);
+			// 	}
+			// }
+		});
+	},
+	media_upload:function (form_id) {
+		$.validator.setDefaults({ ignore: ":hidden:not(select)" })
+		$("#"+form_id).validate({
+
+			submitHandler: function() {
+				var kt = ValidateUpload();
+				if(kt === 0){
+					return false;
+				}
+				var form_mess = $('#form_mess');
+				form_mess.stop(true,true).slideUp(200).html('');
+				var fData = $("#"+form_id).serializeArray();
+				loading('show');
+				$.ajax({
+					type: "POST",
+					url: ROOT+"ajax.php",
+					data: { "m" : "user", "f" : "media_upload", "lang_cur" : lang, "data" : fData }
+				}).done(function( string ) {
+
+					loading('hide');
+
+					var data = JSON.parse(string);
+					if(data.ok == 1) {
+						//$('#'+form_id).reset();
+						//location.reload();
+						//form_mess.html(ttHTemp.html_alert(data.mess,'success')).stop(true,true).slideDown(200);
+						//alert(data.mess);
+						//go_link(link_go);
+						// function(){go_link(link_go);}
+						//jAlert(data.mess, lang_js['aleft_title'],' ', 'success');
+
+						$.jAlert({
+							'title': lang_js['aleft_title'],
+							//'size': 'xsm',
+							'content':data.mess,
+							'animationTimeout': '10',
+							'theme': 'blue',
+							'closeOnClick': true,
+							'blurBackground': true,
+							'onClose': function(alertElem){
+								location.reload();
+							},
+						})
+					} else {
+						form_mess.html(ttHTemp.html_alert(data.mess,'error')).stop(true,true).slideDown(200);
+					}
+				});
+				//e.preventDefault(); //STOP default action
+				//e.unbind(); //unbind. to stop multiple form submit.
+				return false;
+
+			},
+			rules: {
+				// title: {
+				// 	required: true
+				// },
+				// group_id: {
+				// 	required: true,
+				// },
+				// short: {
+				// 	required: true
+				// },
+				// link_download: {
+				// 	required: true
+				// },
+				// re_password: {
+				// 	equalTo: '#'+form_id+' input[name*="password"]'
+				// },
+				/*re_password: {
+				 equalTo: '#'+form_id+' #header_password'
+				 },*/
+//				phone: {
+//					required: true
+//				},
+//				address: {
+//					required: true
+//				},
+				group_id: {
+					required: true,
+				},
+				content: {
+					required: true,
+				},
+				check_terms: {
+					required: true,
+				},
+				captcha: {
+					required: true,
+				},
+				///type_recieve:"required",
+			},
+			defaults: {
+
+			},
+			messages: {
+				check_terms: '',
+				nickname: '',
+				username: '',
+				password: '',
+				re_password: '',
+				//phone: lang_js['err_valid_input'],
+				//address: lang_js['err_valid_input'],
+				//captcha: lang_js['err_valid_input']
+			},
+			// errorPlacement: function (error, element) {
+			// 	console.log("placement");
+			// 	if (element.is("select.chosen-select")) {
+			// 		console.log("placement for chosen");
+			// 		// placement for chosen
+			// 		//element.next("div.chzn-container").append(error);
+			// 		alert('ađá');
+			// 	} else {
+			// 		// standard placement
+			// 		error.insertAfter(element);
+			// 	}
+			// }
+		});
+	},
+	media_contribute:function (form_id) {
+		$.validator.setDefaults({ ignore: ":hidden:not(select)" })
+		$("#"+form_id).validate({
+
+			submitHandler: function() {
+
+				var form_mess = $('#form_mess');
+				form_mess.stop(true,true).slideUp(200).html('');
+				var fData = $("#"+form_id).serializeArray();
+				loading('show');
+				$.ajax({
+					type: "POST",
+					url: ROOT+"ajax.php",
+					data: { "m" : "user", "f" : "media_contribute", "lang_cur" : lang, "data" : fData }
+				}).done(function( string ) {
+
+					loading('hide');
+
+					var data = JSON.parse(string);
+					if(data.ok == 1) {
+						//$('#'+form_id).reset();
+						//location.reload();
+						//form_mess.html(ttHTemp.html_alert(data.mess,'success')).stop(true,true).slideDown(200);
+						//alert(data.mess);
+						//go_link(link_go);
+						// function(){go_link(link_go);}
+						//jAlert(data.mess, lang_js['aleft_title'],' ', 'success');
+
+						$.jAlert({
+							'title': lang_js['aleft_title'],
+							//'size': 'xsm',
+							'content':data.mess,
+							'animationTimeout': '10',
+							'theme': 'blue',
+							'closeOnClick': true,
+							'blurBackground': true,
+							'onClose': function(alertElem){
+								go_link(data.link);
+							},
+						})
+					} else {
+						form_mess.html(ttHTemp.html_alert(data.mess,'error')).stop(true,true).slideDown(200);
+						$.jAlert({
+							'title': lang_js['aleft_title'],
+							//'size': 'xsm',
+							'content':data.mess,
+							'animationTimeout': '10',
+							'theme': 'blue',
+							'closeOnClick': true,
+							'blurBackground': true,
+
+						})
+					}
+				});
+				//e.preventDefault(); //STOP default action
+				//e.unbind(); //unbind. to stop multiple form submit.
+				return false;
+
+			},
+			rules: {
+				// title: {
+				// 	required: true
+				// },
+				// group_id: {
+				// 	required: true,
+				// },
+				// short: {
+				// 	required: true
+				// },
+				// link_download: {
+				// 	required: true
+				// },
+				// re_password: {
+				// 	equalTo: '#'+form_id+' input[name*="password"]'
+				// },
+				/*re_password: {
+				 equalTo: '#'+form_id+' #header_password'
+				 },*/
+				group_id: {
+					required: true,
+				},
+				content: {
+					required: true,
+				},
+				check_terms: {
+					required: true,
+				},
+				captcha: {
+					required: true,
+				},
+				///type_recieve:"required",
+			},
+			defaults: {
+
+			},
+			messages: {
+				check_terms: '',
+				nickname: '',
+				username: '',
+				password: '',
+				re_password: '',
+				//phone: lang_js['err_valid_input'],
+				//address: lang_js['err_valid_input'],
+				//captcha: lang_js['err_valid_input']
+			},
+			// errorPlacement: function (error, element) {
+			// 	console.log("placement");
+			// 	if (element.is("select.chosen-select")) {
+			// 		console.log("placement for chosen");
+			// 		// placement for chosen
+			// 		//element.next("div.chzn-container").append(error);
+			// 		alert('ađá');
+			// 	} else {
+			// 		// standard placement
+			// 		error.insertAfter(element);
+			// 	}
+			// }
+		});
+	},
+	content_product:function (form_id) {// sale cap nhat content product
+		$("#"+form_id).validate({
+
+			submitHandler: function() {
+
+				var form_mess = $('#form_mess');
+				//form_mess.stop(true,true).slideUp(200).html('');
+				var fData = $("#"+form_id).serializeArray();
+                var contenttab_4 = tinyMCE.get('contenttab_4').getContent()
+                //console.log(contenttab_4);
+
+				loading('show');
+				$.ajax({
+					type: "POST",
+					url: ROOT+"ajax.php",
+					data: { "m" : "user", "f" : "content_product", "lang_cur" : lang, "data" : fData ,'contenttab':contenttab_4}
+				}).done(function( string ) {
+
+					loading('hide');
+
+					var data = JSON.parse(string);
+					if(data.ok == 1) {
+
+						$.jAlert({
+							'title': lang_js['aleft_title'],
+							//'size': 'xsm',
+							'content':data.mess,
+							'animationTimeout': '10',
+							'theme': 'blue',
+							'closeOnClick': true,
+							'blurBackground': true,
+							'onClose': function(alertElem){
+								//go_link(data.link);
+                                $('#modal_contenttab').modal('hide');
+							},
+						})
+					} else {
+						//form_mess.html(ttHTemp.html_alert(data.mess,'error')).stop(true,true).slideDown(200);
+						$.jAlert({
+							'title': lang_js['aleft_title'],
+							//'size': 'xsm',
+							'content':data.mess,
+							'animationTimeout': '10',
+							'theme': 'blue',
+							'closeOnClick': true,
+							'blurBackground': true,
+
+						})
+					}
+				});
+				//e.preventDefault(); //STOP default action
+				//e.unbind(); //unbind. to stop multiple form submit.
+				return false;
+
+			},
+			rules: {
+				// title: {
+				// 	required: true
+				// },
+				// group_id: {
+				// 	required: true,
+				// },
+				// short: {
+				// 	required: true
+				// },
+				// link_download: {
+				// 	required: true
+				// },
+				// re_password: {
+				// 	equalTo: '#'+form_id+' input[name*="password"]'
+				// },
+				/*re_password: {
+				 equalTo: '#'+form_id+' #header_password'
+				 },*/
+				group_id: {
+					required: true,
+				},
+				content: {
+					required: true,
+				},
+				check_terms: {
+					required: true,
+				},
+				captcha: {
+					required: true,
+				},
+				///type_recieve:"required",
+			},
+			defaults: {
+
+			},
+			messages: {
+				check_terms: '',
+				nickname: '',
+				username: '',
+				password: '',
+				re_password: '',
+				//phone: lang_js['err_valid_input'],
+				//address: lang_js['err_valid_input'],
+				//captcha: lang_js['err_valid_input']
+			},
+			// errorPlacement: function (error, element) {
+			// 	console.log("placement");
+			// 	if (element.is("select.chosen-select")) {
+			// 		console.log("placement for chosen");
+			// 		// placement for chosen
+			// 		//element.next("div.chzn-container").append(error);
+			// 		alert('ađá');
+			// 	} else {
+			// 		// standard placement
+			// 		error.insertAfter(element);
+			// 	}
+			// }
+		});
+	},
+	delete_classified:function ($item_id) {
+		$.jAlert({
+			'type': 'confirm',
+			'confirmQuestion': 'Bạn có thực sự muốn xóa sản phẩm này? Liên hệ với BQT nếu muốn khôi phục.',
+			'confirmBtnText': 'Xóa',
+			'denyBtnText': 'Hủy bỏ',
+			'onConfirm': function(e, btn){
+				$.ajax({
+					type: "POST",
+					url: ROOT + "ajax.php",
+					data: {"m": "user", "f": "delete_product", "item_id": $item_id}
+				}).done(function (string) {
+					//loading('hide');
+					location.reload();
+					// $.jAlert({
+					// 	'title': '',
+					// 	//'size': 'xsm',
+					// 	'height': '120px',
+					// 	'width': '100px',
+					// 	'content': 'Đã xóa',
+					// 	'animationTimeout': '10',
+					// 	'theme': 'blue',
+					// 	'closeOnEsc': 'true',
+					// 	'closeBtn': 'false',
+					// })
+
+				});
+			}
+		})
+	},
+	delete_media:function ($item_id) {
+		$.jAlert({
+			'type': 'confirm',
+			'confirmQuestion': 'Bạn có thực sự muốn xóa tài liệu này? Liên hệ với BQT nếu muốn khôi phục.',
+			'confirmBtnText': 'Xóa',
+			'denyBtnText': 'Hủy bỏ',
+			'onConfirm': function(e, btn){
+				$.ajax({
+					type: "POST",
+					url: ROOT + "ajax.php",
+					data: {"m": "user", "f": "delete_media", "item_id": $item_id}
+				}).done(function (string) {
+					//loading('hide');
+					location.reload();
+					// $.jAlert({
+					// 	'title': '',
+					// 	//'size': 'xsm',
+					// 	'height': '120px',
+					// 	'width': '100px',
+					// 	'content': 'Đã xóa',
+					// 	'animationTimeout': '10',
+					// 	'theme': 'blue',
+					// 	'closeOnEsc': 'true',
+					// 	'closeBtn': 'false',
+					// })
+
+				});
+			}
+		})
+	},
+	delete_favorite:function ($item_id) {
+		$.jAlert({
+			'type': 'confirm',
+			'confirmQuestion': 'Bạn có thực sự muốn xóa lưu code này?',
+			'confirmBtnText': 'Bỏ lưu',
+			'denyBtnText': 'Hủy bỏ',
+			'onConfirm': function(e, btn){
+				loading('show');
+				$.ajax({
+					type: "POST",
+					url: ROOT + "ajax.php",
+					data: {"m": "user", "f": "delete_favorite", "item_id": $item_id}
+				}).done(function (string) {
+					loading('hide');
+					location.reload();
+				});
+			}
+		})
+	},
+	signup:function (form_id, link_go) {
+		$("#"+form_id).validate({
+			submitHandler: function() {
+				var form_mess = $('#'+form_id).find('.form_mess');
+				form_mess.stop(true,true).slideUp(200).html('');
+				var fData = $("#"+form_id).serializeArray();
+				
+				loading('show');
+				
+				$.ajax({
+					type: "POST",
+					url: ROOT+"ajax.php",
+					data: { "m" : "user", "f" : "signup", "lang_cur" : lang, "data" : fData }
+				}).done(function( string ) {
+					
+					loading('hide');
+					
+					var data = JSON.parse(string);
+					if(data.ok == 1) {
+					
+                        $.jAlert({
+                            'title': 'Thông báo',
+                            //'size': 'xsm',
+                            'content':data.mess,
+                            'animationTimeout': '10',
+                            'theme': 'blue',
+                            'closeOnClick': true,
+                            'blurBackground': true,
+                            'onClose': function(alertElem){
+                                //location.reload();
+                                go_link(ROOT+'dang-nhap');
+                            },
+                        })
+					} else {
+						form_mess.html(ttHTemp.html_alert(data.mess,'error')).stop(true,true).slideDown(200);
+					}
+				});
+				//e.preventDefault(); //STOP default action
+				//e.unbind(); //unbind. to stop multiple form submit.
+				return false;
+				
+			},
+			rules: {
+				nickname: {
+					required: true
+				},
+				username: {
+					required: true,
+					email: true
+				},
+				password: {
+					required: true
+				},
+				re_password: {
+					 equalTo: '#'+form_id+' input[name*="password"]'
+				},
+				phone: {
+					required: true
+				},
+				captcha: {
+					required: true
+				}
+			},
+			messages: {
+				nickname: '',
+				username: '',
+				password: '',
+                full_name: '',
+				re_password: '',
+				phone: '',
+				//address: lang_js['err_valid_input'],
+				captcha: ''
+			}			
+		});
+	},
+	signin:function (form_id, link_go) {
+		var form_mess = $('#'+form_id).find('.form_mess');
+		// var acctive = getUrlParameter('acctive');
+		// if(acctive == 1){
+		// 	form_mess.html(ttHTemp.html_alert(lang_js['acctive_user'],'success')).stop(true,true).slideDown(200);
+		// }
+		$("#"+form_id).validate({
+			submitHandler: function() {
+				form_mess.stop(true,true).slideUp(200).html('');
+				var fData = $('#'+form_id).serializeArray();
+				
+				loading('show');
+				
+				$.ajax({
+					type: "POST",
+					url: ROOT+"ajax.php",
+					data: { "m" : "user", "f" : "signin", "lang_cur" : lang, "data" : fData }
+				}).done(function( string ) {
+					
+					loading('hide');
+					
+					var data = JSON.parse(string);
+					if(data.ok == 1) {
+                        //go_link(link_go+'?user_id='+data.user_id);
+                        go_link(link_go);
+						/*form_mess.html(ttHTemp.html_alert(data.mess,'success')).stop(true,true).slideDown(200);
+						*/
+						//jAlert(data.mess, lang_js['aleft_title'], function(){go_link(link_go);}, 'success');
+					} else {
+						form_mess.html(ttHTemp.html_alert(data.mess,'error')).stop(true,true).slideDown(200);
+					}
+				});
+				//e.preventDefault(); //STOP default action
+				//e.unbind(); //unbind. to stop multiple form submit.
+				return false;
+			},
+			rules: {
+				username: {
+					required: true,
+				},
+				password: {
+					required: true
+				}
+			},
+			messages: {
+				username: '',
+				password: ''
+			}
+		});	
+	},
+	signout:function (link_go) {
+		
+		loading('show');
+		
+		$.ajax({
+			type: "POST",
+			url: ROOT+"ajax.php",
+			data: { "m" : "user", "f" : "signout" }
+		}).done(function( string ) {
+			
+			loading('hide');
+			
+			var data = JSON.parse(string);
+			if(data.ok == 1) {
+                $.removeCookie("siteAuth");
+                document.cookie = "siteAuth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                loading('show');
+				go_link(link_go);
+			}
+		});
+		return false;
+	},
+	// account ============================================================
+	account:function (form_id) {
+		$("#"+form_id).validate({
+            submitHandler: function() {
+				var form_mess = $('#'+form_id).find('.form_mess');
+				form_mess.stop(true,true).slideUp(200).html('');
+				loading('show');
+                formData = new FormData($("#"+form_id)[0]);
+                formData.append("f", "account");
+                formData.append("m", "user");
+                formData.append("lang_cur", lang);
+				$.ajax({
+                    type: 'POST',
+                    url: ROOT+"ajax.php",
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+				}).done(function( string ) {
+					loading('hide');
+					var data = JSON.parse(string);
+					if(data.ok == 1) {
+                        jAlert(data.mess, lang_js['aleft_title'],function(){location.reload();}, 'success', '2000');
+					} else {
+                        jAlert(data.mess, lang_js['aleft_title'],function(){location.reload();}, 'error', '2000');
+					}
+				});
+				//e.preventDefault(); //STOP default action
+				//e.unbind(); //unbind. to stop multiple form submit.
+				return false;
+			},
+			rules: {
+				nickname: {
+					required: true
+				},
+				birthday: {
+					required: true
+				},
+//				gender: {
+//					required: true
+//				},
+//				description: {
+//					required: true
+//				}
+			},
+			messages: {
+				//picture: lang_js['err_empty'].replace("[name]", lang_js['picture']),
+                //nickname: lang_js['err_email'].replace("[name]", get_lang('nickname', 'user')),
+				nickname: get_lang('err_email', 'user', {'[name]':get_lang('nickname', 'user')}),
+				birthday: '',
+//				gender: lang_js['err_empty'].replace("[name]", lang_js['gender']),
+//				description: lang_js['err_empty'].replace("[name]", lang_js['description'])
+			}
+		});
+	},
+	
+	// change_pass ============================================================
+	change_pass:function (form_id) {
+		
+		$("#"+form_id).validate({
+            submitHandler: function() {
+				var form_mess = $('#'+form_id).find('.form_mess');
+				form_mess.stop(true,true).slideUp(200).html('');
+				var fData = $('#'+form_id).serializeArray();
+				
+				loading('show');
+				
+				$.ajax({
+					type: "POST",
+					url: ROOT+"ajax.php",
+					data: { "m" : "user", "f" : "change_pass", "lang_cur" : lang, "data" : fData }
+				}).done(function( string ) {
+					
+					loading('hide');
+					
+					var data = JSON.parse(string);
+					if(data.ok == 1) {
+						form_mess.html(ttHTemp.html_alert(data.mess,'success')).stop(true,true).slideDown(200);
+					} else {
+						form_mess.html(ttHTemp.html_alert(data.mess,'error')).stop(true,true).slideDown(200);
+					}
+				});
+				//e.preventDefault(); //STOP default action
+				//e.unbind(); //unbind. to stop multiple form submit.
+				return false;
+			},
+			rules: {
+				password_cur: {
+					required: true
+				},
+				password: {
+					required: true
+				},
+				re_password: {
+					equalTo: '#'+form_id+' #password'
+				},
+			},
+			messages: {
+				password_cur: get_lang('err_invalid', 'user', {'[name]':get_lang('password_cur', 'user')}),
+				password: get_lang('err_invalid', 'user', {'[name]':get_lang('password', 'user')}),
+				re_password: get_lang('err_invalid', 'user', {'[name]':get_lang('re_password', 'user')}),
+			}
+		});
+	},
+	
+	// forget_pass ============================================================
+	forget_pass:function (form_id) {
+        
+		$("#"+form_id).validate({
+            submitHandler: function() {
+				var form_mess = $('#'+form_id).find('.form_mess');
+				form_mess.stop(true,true).slideUp(200).html('');
+				var fData = $('#'+form_id).serializeArray();
+				
+				loading('show');
+				
+				$.ajax({
+					type: "POST",
+					url: ROOT+"ajax.php",
+					data: { "m" : "user", "f" : "forget_pass", "lang_cur" : lang, "data" : fData }
+				}).done(function( string ) {
+					
+					loading('hide');
+					
+					var data = JSON.parse(string);
+					if(data.ok == 1) {
+						form_mess.html(ttHTemp.html_alert(data.mess,'success')).stop(true,true).slideDown(200);
+					} else {
+						form_mess.html(ttHTemp.html_alert(data.mess,'error')).stop(true,true).slideDown(200);
+					}
+				});
+				//e.preventDefault(); //STOP default action
+				//e.unbind(); //unbind. to stop multiple form submit.
+				return false;
+			},
+			rules: {
+				username: {
+					required: true,
+					email: true
+				}
+			},
+			messages: {
+				username: {
+					required: lang_js['err_valid_input'],
+					email: lang_js['err_email_input']
+				}
+			}
+		});
+	},
+	add_customer:function (form_id) {
+
+		$("#"+form_id).validate({
+            submitHandler: function() {
+				var form_mess = $('#'+form_id).find('.form_mess');
+				form_mess.stop(true,true).slideUp(200).html('');
+				var fData = $('#'+form_id).serializeArray();
+
+				loading('show');
+				$.ajax({
+					type: "POST",
+					url: ROOT+"ajax.php",
+					data: { "m" : "user", "f" : "add_customer", "lang_cur" : lang, "data" : fData }
+				}).done(function( string ) {
+
+					loading('hide');
+
+					var data = JSON.parse(string);
+					if(data.ok == 1) {
+                        $.jAlert({
+                            'title': 'Thông báo',
+                            //'size': 'xsm',
+                            'content':data.mess,
+                            'animationTimeout': '10',
+                            'theme': 'blue',
+                            'closeOnClick': true,
+                            'blurBackground': true,
+                            'onClose': function(alertElem){
+                                location.reload();
+                            },
+                        })
+					} else {
+                        $.jAlert({
+                            'title': 'Thông báo',
+                            //'size': 'xsm',
+                            'content':data.mess,
+                            'animationTimeout': '10',
+                            'theme': 'red',
+                            'closeOnClick': true,
+                            'blurBackground': true,
+                        })
+					}
+				});
+				//e.preventDefault(); //STOP default action
+				//e.unbind(); //unbind. to stop multiple form submit.
+				return false;
+			},
+			rules: {
+                email: {
+					required: true,
+					email: true
+				},
+				full_name: {
+					required: true,
+				}
+			},
+			messages: {
+                full_name: {
+					required: '',
+				},
+                email: {
+					required: '',
+				}
+			}
+		});
+	},
+	delete_customer:function (item_id) {
+        $.jAlert({
+            'type': 'confirm',
+            'confirmQuestion': 'Bạn có thực sự muốn xóa khách hàng này?',
+            'confirmBtnText': 'Xóa',
+            'denyBtnText': 'Hủy bỏ',
+            'onConfirm': function(e, btn){
+                $.ajax({
+                    type: "POST",
+                    url: ROOT + "ajax.php",
+                    data: {"m": "user", "f": "delete_customer", "item_id": item_id}
+                }).done(function (string) {
+                    //loading('hide');
+                    location.reload();
+                    // $.jAlert({
+                    // 	'title': '',
+                    // 	//'size': 'xsm',
+                    // 	'height': '120px',
+                    // 	'width': '100px',
+                    // 	'content': 'Đã xóa',
+                    // 	'animationTimeout': '10',
+                    // 	'theme': 'blue',
+                    // 	'closeOnEsc': 'true',
+                    // 	'closeBtn': 'false',
+                    // })
+
+                });
+
+            }
+
+        })
+	},
+
+	autocomplete_product : function(id){
+	    setTimeout(function() {
+	    	if ($("#"+id).length > 0){
+				var availableTags = [];
+				$.ajax({
+					type: "POST",
+					url: ROOT+"ajax.php",
+					data: { "m" : "product", "f" : "loadTitleProduct"}
+				}).done(function(result) {
+					var data = JSON.parse(result);
+					if (data.ok == 1) {
+						$.each (data.result, function(i,val) {
+							availableTags.push(val.title_full);
+						});
+				    }
+				    return false;
+				});
+				$("#" + id).autocomplete({
+	                minLength: 2,
+	                source: function (requestObj, responseFunc) {
+	                    var matchArry = availableTags.slice();
+	                    requestObj.term = xoaDau(requestObj.term).toLowerCase();
+	                    var srchTerms = $.trim(requestObj.term).split(/\s+/);
+	                    $.each(srchTerms, function (J, term) {
+	                        var regX = new RegExp(term, "i");
+	                        matchArry = $.map(matchArry, function (item) {
+	                            return regX.test(xoaDau(item).toLowerCase()) ? item : null;
+	                        });
+	                    });
+	                    responseFunc(matchArry.slice(0, 35));
+	                },
+	                open: function (event, ui) {
+	                    var resultsList = $("ul.ui-autocomplete > li.ui-menu-item > a");
+	                    var srchTerm = $.trim($("#" + id).val()).split(/\s+/).join('|');
+	                    resultsList.each(function () {
+	                        var jThis = $(this);
+	                        var regX = new RegExp('(' + srchTerm + ')', "ig");
+	                        var oldTxt = jThis.text();
+	                        jThis.html(oldTxt.replace(regX, '<b>$1</b>'));
+	                    });
+	                },
+	                select: function (event, ui) {
+	                    $(this).val(ui.item.value);
+	                    document.getElementById('form_' + id).submit();
+	                }
+	            });
+			}
+	    }, 200);
+    },
+
+    autocomplete_search : function(id){
+        if ($("#" + id).length > 0) {
+            var availableTags = [];
+            $.each(data_title_product, function (i, val) {
+                availableTags.push(val.title);
+            });
+            $("#" + id).autocomplete({
+                minLength: 2,
+                source: function (requestObj, responseFunc) {
+                    var matchArry = availableTags.slice();
+                    requestObj.term = xoaDau(requestObj.term).toLowerCase();
+                    var srchTerms = $.trim(requestObj.term).split(/\s+/);
+                    $.each(srchTerms, function (J, term) {
+                        var regX = new RegExp(term, "i");
+                        matchArry = $.map(matchArry, function (item) {
+                            return regX.test(xoaDau(item).toLowerCase()) ? item : null;
+                        });
+                    });
+                    responseFunc(matchArry.slice(0, 35));
+                },
+                open: function (event, ui) {
+                    var resultsList = $("ul.ui-autocomplete > li.ui-menu-item > a");
+                    var srchTerm = $.trim($("#" + id).val()).split(/\s+/).join('|');
+                    resultsList.each(function () {
+                        var jThis = $(this);
+                        var regX = new RegExp('(' + srchTerm + ')', "ig");
+                        var oldTxt = jThis.text();
+                        jThis.html(oldTxt.replace(regX, '<b>$1</b>'));
+                    });
+                },
+                select: function (event, ui) {
+                    $(this).val(ui.item.value);
+                    document.getElementById('form_' + id).submit();
+                }
+            })
+        }
+    },
+
+    add_deeplink:function (form_id) {
+        $("#"+form_id).validate({
+            submitHandler: function() {
+                var form_mess = $('#'+form_id).find('.form_mess');
+                form_mess.stop(true,true).slideUp(200).html('');
+                var fData = $('#'+form_id).serializeArray();
+                loading('show');
+                $.ajax({
+                    type: "POST",
+                    url: ROOT+"ajax.php",
+                    data: { "m" : "user", "f" : "add_deeplink", "lang_cur" : lang, 'data': fData}
+                }).done(function( string ) {
+                    loading('hide');
+                    var data = JSON.parse(string);
+                    if(data.ok == 1) {
+                        location.reload();
+                    }else if(data.ok == 2) {
+                    	$('#deeplink_text_coppy').html(data.link);
+                    	$('#deeplink_text_coppy').CopyToClipboard();
+						jAlert(data.mess, lang_js['aleft_title'],' ', 'success', 2000);
+                		return false;
+                    } else {
+                        $.jAlert({
+                            'title': 'Thông báo',
+                            //'size': 'xsm',
+                            'content':data.mess,
+                            'animationTimeout': '10',
+                            'theme': 'red',
+                            'closeOnClick': true,
+                            'blurBackground': true,
+                        })
+                    }
+                });
+                return false;
+            },
+            rules: {
+                link_source: {
+                    required: true,
+                },
+
+            },
+            messages: {
+                link_source: {
+                    required: '',
+                },
+            }
+        });
+
+
+
+
+
+    },
+    delete_deeplink:function (item_id) {
+        $.jAlert({
+            'type': 'confirm',
+            'confirmQuestion': 'Bạn có thực sự muốn xóa link này?',
+            'confirmBtnText': 'Xóa',
+            'denyBtnText': 'Hủy bỏ',
+            'onConfirm': function(e, btn){
+                $.ajax({
+                    type: "POST",
+                    url: ROOT + "ajax.php",
+                    data: {"m": "user", "f": "delete_deeplink", "item_id": item_id}
+                }).done(function (string) {
+                    loading('hide');
+                    var data = JSON.parse(string);
+                    if(data.ok == 1) {
+                        location.reload();
+                    } else {
+                        $.jAlert({
+                            'title': 'Thông báo',
+                            //'size': 'xsm',
+                            'content':data.mess,
+                            'animationTimeout': '10',
+                            'theme': 'red',
+                            'closeOnClick': true,
+                            'blurBackground': true,
+                        })
+                    }
+                });
+
+            }
+
+        })
+    },
+
+};
+
