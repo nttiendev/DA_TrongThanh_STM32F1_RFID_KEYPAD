@@ -755,17 +755,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : r1_Pin r2_Pin r3_Pin r4_Pin */
-  GPIO_InitStruct.Pin = r1_Pin|r2_Pin|r3_Pin|r4_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : SDA_Pin LCD_D4_Pin LCD_D5_Pin LCD_D6_Pin
-                           LCD_D7_Pin relay_Pin */
-  GPIO_InitStruct.Pin = SDA_Pin|LCD_D4_Pin|LCD_D5_Pin|LCD_D6_Pin
-                          |LCD_D7_Pin|relay_Pin;
+  /*Configure GPIO pins : r1_Pin r2_Pin r3_Pin SDA_Pin
+                           LCD_D4_Pin LCD_D5_Pin LCD_D6_Pin LCD_D7_Pin
+                           r4_Pin relay_Pin */
+  GPIO_InitStruct.Pin = r1_Pin|r2_Pin|r3_Pin|SDA_Pin
+                          |LCD_D4_Pin|LCD_D5_Pin|LCD_D6_Pin|LCD_D7_Pin
+                          |r4_Pin|relay_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
