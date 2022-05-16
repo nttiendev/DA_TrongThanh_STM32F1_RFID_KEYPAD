@@ -61,8 +61,6 @@ extern rfid_store_t rfid_store;
 /* Private variables ---------------------------------------------------------*/
 SPI_HandleTypeDef hspi1;
 
-TIM_HandleTypeDef htim2;
-
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -71,7 +69,6 @@ TIM_HandleTypeDef htim2;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
-static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -89,8 +86,8 @@ uint8_t serNum[5];
 mode_door mode = MODE_ENTERPASS;
 uint8_t flag_backup = 0;
 
-#define OPEN_DOOR() do{ HAL_TIM_PWM_Start_IT(&htim2, TIM_CHANNEL_1); htim2.Instance->CCR1 = 25;}while(0)
-#define CLOSE_DOOR() do{ htim2.Instance->CCR1 = 125; HAL_Delay(700); HAL_TIM_PWM_Stop_IT(&htim2, TIM_CHANNEL_1);}while(0)
+#define OPEN_DOOR() do{ HAL_GPIO_WritePin(relay_GPIO_Port, relay_Pin, GPIO_PIN_SET);}while(0)
+#define CLOSE_DOOR() do{ HAL_GPIO_WritePin(relay_GPIO_Port, relay_Pin, GPIO_PIN_RESET);}while(0)
 
 void TT_enterPass(char key, uint8_t lengpass, uint8_t *pass, char *password, uint8_t *passIndex, uint8_t *pass1)
 {
@@ -547,7 +544,6 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_SPI1_Init();
-  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
 	TM_MFRC522_Init();
 	lcd_init();
@@ -722,65 +718,6 @@ static void MX_SPI1_Init(void)
 }
 
 /**
-  * @brief TIM2 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_TIM2_Init(void)
-{
-
-  /* USER CODE BEGIN TIM2_Init 0 */
-
-  /* USER CODE END TIM2_Init 0 */
-
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-  TIM_OC_InitTypeDef sConfigOC = {0};
-
-  /* USER CODE BEGIN TIM2_Init 1 */
-
-  /* USER CODE END TIM2_Init 1 */
-  htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 160;
-  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 999;
-  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
-  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_TIM_PWM_Init(&htim2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 0;
-  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM2_Init 2 */
-
-  /* USER CODE END TIM2_Init 2 */
-  HAL_TIM_MspPostInit(&htim2);
-
-}
-
-/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -800,7 +737,7 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, r1_Pin|r2_Pin|r3_Pin|SDA_Pin
                           |LCD_D4_Pin|LCD_D5_Pin|LCD_D6_Pin|LCD_D7_Pin
-                          |r4_Pin, GPIO_PIN_RESET);
+                          |r4_Pin|relay_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, loa_Pin|LCD_RS_Pin|LCD_EN_Pin, GPIO_PIN_RESET);
@@ -818,19 +755,24 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : r1_Pin r2_Pin r3_Pin SDA_Pin
-                           LCD_D4_Pin LCD_D5_Pin LCD_D6_Pin LCD_D7_Pin
-                           r4_Pin */
-  GPIO_InitStruct.Pin = r1_Pin|r2_Pin|r3_Pin|SDA_Pin
-                          |LCD_D4_Pin|LCD_D5_Pin|LCD_D6_Pin|LCD_D7_Pin
-                          |r4_Pin;
+  /*Configure GPIO pins : r1_Pin r2_Pin r3_Pin r4_Pin */
+  GPIO_InitStruct.Pin = r1_Pin|r2_Pin|r3_Pin|r4_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : SDA_Pin LCD_D4_Pin LCD_D5_Pin LCD_D6_Pin
+                           LCD_D7_Pin relay_Pin */
+  GPIO_InitStruct.Pin = SDA_Pin|LCD_D4_Pin|LCD_D5_Pin|LCD_D6_Pin
+                          |LCD_D7_Pin|relay_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : c1_Pin c2_Pin c3_Pin c4_Pin */
-  GPIO_InitStruct.Pin = c1_Pin|c2_Pin|c3_Pin|c4_Pin;
+  /*Configure GPIO pins : c4_Pin c3_Pin c2_Pin c1_Pin */
+  GPIO_InitStruct.Pin = c4_Pin|c3_Pin|c2_Pin|c1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);

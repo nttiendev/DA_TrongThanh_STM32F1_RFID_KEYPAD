@@ -26,5 +26,3 @@ rfid\stm32f1xx_hal_msp_1.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_fl
 rfid\stm32f1xx_hal_msp_1.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 rfid\stm32f1xx_hal_msp_1.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 rfid\stm32f1xx_hal_msp_1.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h
-rfid\stm32f1xx_hal_msp_1.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
-rfid\stm32f1xx_hal_msp_1.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h

@@ -26,8 +26,6 @@ rfid\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
 rfid\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 rfid\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 rfid\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h
-rfid\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
-rfid\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 rfid\main.o: ../Core/Inc/rfid.h
 rfid\main.o: C:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 rfid\main.o: C:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

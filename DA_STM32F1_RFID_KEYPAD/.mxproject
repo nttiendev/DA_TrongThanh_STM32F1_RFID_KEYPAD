@@ -9,17 +9,17 @@ CDefines=USE_HAL_DRIVER;STM32F103xB;USE_HAL_DRIVER;USE_HAL_DRIVER;
 [PreviousGenFiles]
 AdvancedFolderStructure=true
 HeaderFileListSize=3
-HeaderFiles#0=D:/Documents/PROJECT/DATN_2022/Documents/DA_ThuongThuong/rfid (1)/rfid/Core/Inc/stm32f1xx_it.h
-HeaderFiles#1=D:/Documents/PROJECT/DATN_2022/Documents/DA_ThuongThuong/rfid (1)/rfid/Core/Inc/stm32f1xx_hal_conf.h
-HeaderFiles#2=D:/Documents/PROJECT/DATN_2022/Documents/DA_ThuongThuong/rfid (1)/rfid/Core/Inc/main.h
+HeaderFiles#0=D:/Documents/PROJECT/DO_AN_TN_22/DA_Thanh/DA_TrongThanh_STM32F1_RFID_KEYPAD/DA_STM32F1_RFID_KEYPAD/Core/Inc/stm32f1xx_it.h
+HeaderFiles#1=D:/Documents/PROJECT/DO_AN_TN_22/DA_Thanh/DA_TrongThanh_STM32F1_RFID_KEYPAD/DA_STM32F1_RFID_KEYPAD/Core/Inc/stm32f1xx_hal_conf.h
+HeaderFiles#2=D:/Documents/PROJECT/DO_AN_TN_22/DA_Thanh/DA_TrongThanh_STM32F1_RFID_KEYPAD/DA_STM32F1_RFID_KEYPAD/Core/Inc/main.h
 HeaderFolderListSize=1
-HeaderPath#0=D:/Documents/PROJECT/DATN_2022/Documents/DA_ThuongThuong/rfid (1)/rfid/Core/Inc
+HeaderPath#0=D:/Documents/PROJECT/DO_AN_TN_22/DA_Thanh/DA_TrongThanh_STM32F1_RFID_KEYPAD/DA_STM32F1_RFID_KEYPAD/Core/Inc
 HeaderFiles=;
 SourceFileListSize=3
-SourceFiles#0=D:/Documents/PROJECT/DATN_2022/Documents/DA_ThuongThuong/rfid (1)/rfid/Core/Src/stm32f1xx_it.c
-SourceFiles#1=D:/Documents/PROJECT/DATN_2022/Documents/DA_ThuongThuong/rfid (1)/rfid/Core/Src/stm32f1xx_hal_msp.c
-SourceFiles#2=D:/Documents/PROJECT/DATN_2022/Documents/DA_ThuongThuong/rfid (1)/rfid/Core/Src/main.c
+SourceFiles#0=D:/Documents/PROJECT/DO_AN_TN_22/DA_Thanh/DA_TrongThanh_STM32F1_RFID_KEYPAD/DA_STM32F1_RFID_KEYPAD/Core/Src/stm32f1xx_it.c
+SourceFiles#1=D:/Documents/PROJECT/DO_AN_TN_22/DA_Thanh/DA_TrongThanh_STM32F1_RFID_KEYPAD/DA_STM32F1_RFID_KEYPAD/Core/Src/stm32f1xx_hal_msp.c
+SourceFiles#2=D:/Documents/PROJECT/DO_AN_TN_22/DA_Thanh/DA_TrongThanh_STM32F1_RFID_KEYPAD/DA_STM32F1_RFID_KEYPAD/Core/Src/main.c
 SourceFolderListSize=1
-SourcePath#0=D:/Documents/PROJECT/DATN_2022/Documents/DA_ThuongThuong/rfid (1)/rfid/Core/Src
+SourcePath#0=D:/Documents/PROJECT/DO_AN_TN_22/DA_Thanh/DA_TrongThanh_STM32F1_RFID_KEYPAD/DA_STM32F1_RFID_KEYPAD/Core/Src
 SourceFiles=;
 

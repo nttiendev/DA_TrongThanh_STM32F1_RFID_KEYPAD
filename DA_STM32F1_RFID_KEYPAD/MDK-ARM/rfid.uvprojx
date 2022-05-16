@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xB</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;../SERVO;../util;..\..\Flash</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;../SERVO;../util;../../Flash</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -409,6 +409,21 @@
               <FilePath>..\Core\Src\keypad_4x4.c</FilePath>
             </File>
             <File>
+              <FileName>rfid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\rfid.c</FilePath>
+            </File>
+            <File>
+              <FileName>rfid.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Inc\rfid.h</FilePath>
+            </File>
+            <File>
+              <FileName>Flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\Flash.c</FilePath>
+            </File>
+            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/main.c</FilePath>
@@ -473,21 +488,6 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
-            </File>
-            <File>
-              <FileName>rfid.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\rfid.c</FilePath>
-            </File>
-            <File>
-              <FileName>rfid.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Core\Inc\rfid.h</FilePath>
-            </File>
-            <File>
-              <FileName>Flash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\Flash.c</FilePath>
             </File>
           </Files>
         </Group>
